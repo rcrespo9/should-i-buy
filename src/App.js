@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-
-const Wrapper = styled.main`
-
-`
+import Intro from './components/Intro'
 
 const App = () => {
   return (
-    <Wrapper>
-      
-    </Wrapper>
+    <main>
+      <Intro />
+    </main>
   )
 }
 
