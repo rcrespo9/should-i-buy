@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
-import Intro from './components/Intro'
+import Quiz from './components/Quiz'
 
 const App = () => {
   return (
     <main>
-      <Intro />
+      <Quiz />
     </main>
   )
 }
