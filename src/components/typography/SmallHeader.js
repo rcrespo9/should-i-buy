@@ -5,9 +5,9 @@ const StyledSmallHeader = styled.h1`
 `
 
 const SmallHeader = (props) => {
-  const { text } = props
+  const { tag, children } = props
 
-  return <StyledSmallHeader>{text}</StyledSmallHeader>
+  return <StyledSmallHeader as={tag}>{children}</StyledSmallHeader>
 }
 
 export default SmallHeader

@@ -5,9 +5,9 @@ const StyledButton = styled.button`
 `
 
 const Button = (props) => {
-  const { text } = props
+  const { children } = props
 
-  return <StyledButton>{text}</StyledButton>
+  return <StyledButton>{children}</StyledButton>
 }
 
 export default Button

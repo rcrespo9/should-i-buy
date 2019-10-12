@@ -9,12 +9,12 @@ import Button from './Button'
 const Intro = () => {
   return (
     <ContentWrapper>
-      <LargeHeader text="Should I Buy This?" />
+      <LargeHeader tag="h1">Should I Buy This?</LargeHeader>
       <Paragraph>
         Some text.
       </Paragraph>
       <ActionsWrapper>
-        <Button text="Get Started" />
+        <Button>Get Started</Button>
       </ActionsWrapper>
     </ContentWrapper>
   )

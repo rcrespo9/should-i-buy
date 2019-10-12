@@ -5,9 +5,9 @@ const StyledLargeHeader = styled.h2`
 `
 
 const LargeHeader = (props) => {
-  const { text } = props
+  const { children, tag } = props
 
-  return <StyledLargeHeader>{text}</StyledLargeHeader>
+  return <StyledLargeHeader as={tag}>{children}</StyledLargeHeader>
 }
 
 export default LargeHeader
