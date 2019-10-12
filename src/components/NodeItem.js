@@ -7,7 +7,7 @@ import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
 import Button from "./Button";
 
-const Question = (props) => {
+const NodeItem = (props) => {
   const { title, info, yesId, noId, isFinalDecision } = props
 
   return (
@@ -30,4 +30,4 @@ const Question = (props) => {
   )
 }
 
-export default Question;
+export default NodeItem;
