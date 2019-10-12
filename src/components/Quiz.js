@@ -4,7 +4,7 @@ import Intro from './Intro'
 import Question from './Question'
 
 const Quiz = () => {
-  const [activeQuestion, setActiveQuestion] = useState(0)
+  const [activeQuestion, setActiveQuestion] = useState(null)
 
   return (
     <div>
