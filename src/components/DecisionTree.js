@@ -12,6 +12,12 @@ const DecisionTree = () => {
     setNodes(nodesData)
   })
 
+  const activateNode = (nodeId) => {
+    const foundNode = nodes.find((node) => node.id === nodeId)
+
+    setActiveNode(foundNode)
+  }
+
   return (
     <div>
       <Intro />
