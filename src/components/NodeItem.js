@@ -5,27 +5,22 @@ import ActionsWrapper from "./ActionsWrapper";
 import SmallHeader from "./typography/SmallHeader";
 import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
-import Button from "./Button";
 
 const NodeItem = (props) => {
-  const { title, info, yesId, noId, isFinalDecision } = props
+  const { text, details, yesChildId, noChildId, commentChildId, isFinalDecision, isPositiveDecision, isComment, actions } = props
 
   return (
     <ContentWrapper>
       <SmallHeader text="Should I Buy This?" />
-      <LargeHeader text={title} />
-      {info.length &&
+      <LargeHeader text={text} />
+      {details.length &&
         <Paragraph>
-          {info}
+          {details}
         </Paragraph>
       }
-
-      {isFinalDecision &&
-        <ActionsWrapper>
-          <Button text="Yes" />
-          <Button text="No" />
-        </ActionsWrapper>
-      }
+      <ActionsWrapper>
+        { actions }
+      </ActionsWrapper>
     </ContentWrapper>
   )
 }
