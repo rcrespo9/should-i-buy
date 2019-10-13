@@ -23,11 +23,19 @@ const DecisionTree = () => {
   if (activeNode === null) {
     return (
       <Intro actions={
-        <Button onClick={activateNode} value={1}>Get Started</Button>
+        <Button 
+          onClick={activateNode} 
+          value={1}>Get Started</Button>
       } />
     )
   } else {
-    return <NodeItem text={activeNode.text} details={activeNode.details} isFinalDecision={activeNode.isFinalDecision} />
+    return (
+      <NodeItem 
+        text={activeNode.text} 
+        details={activeNode.details} 
+        isFinalDecision={activeNode.isFinalDecision}
+      />
+    )
   }
 }
 
