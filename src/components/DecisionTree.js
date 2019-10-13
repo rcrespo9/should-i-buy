@@ -20,11 +20,15 @@ const DecisionTree = () => {
     setActiveNode(foundNode)
   }
 
-  return (
-    <Intro actions={
-      <Button onClick={activateNode} value={1}>Get Started</Button>
-    } />
-  )
+  if (activeNode === null) {
+    return (
+      <Intro actions={
+        <Button onClick={activateNode} value={1}>Get Started</Button>
+      } />
+    )
+  } else {
+    return <NodeItem text={activeNode.text} details={activeNode.details} isFinalDecision={activeNode.isFinalDecision} />
+  }
 }
 
 export default DecisionTree
