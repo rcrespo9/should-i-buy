@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import styled from "styled-components";
+
 import nodesData from '../nodes.json'
 
 import Intro from './Intro'
 import NodeItem from './NodeItem'
-import Button from './Button'
+
+const Button = styled.button`
+`
 
 const DecisionTree = () => {
   const [activeNode, setActiveNode] = useState(null)
-  const [nodes, setNodes] = useState(null)
+  const [nodes] = useState(nodesData)
 
-  useEffect(() => {
-    setNodes(nodesData)
-  })
-
-  const activateNode = (nodeId) => {
+  const activateNode = evt => {
+    const nodeId = parseInt(evt.currentTarget.value, 10);
     const foundNode = nodes.find((node) => node.id === nodeId)
 
     setActiveNode(foundNode)
@@ -21,7 +22,7 @@ const DecisionTree = () => {
 
   return (
     <Intro actions={
-      <Button onClick={() => activateNode(1)}>Get Started</Button>
+      <Button onClick={activateNode} value={1}>Get Started</Button>
     } />
   )
 }
