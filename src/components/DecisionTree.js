@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
 
 import nodesData from '../nodes.json'
@@ -29,28 +29,30 @@ const DecisionTree = () => {
       } />
     )
     : <NodeItem 
-      text={activeNode.text} 
-      details={activeNode.details} 
-      isFinalDecision={activeNode.isFinalDecision}
-      actions={
-        activeNode.isComment 
-        ? <Button 
-            onClick={activateNode}
-            value={activeNode.commentChildId}>Next</Button>  
-        : activeNode.isFinalDecision
-          ? <Button 
+        text={activeNode.text} 
+        details={activeNode.details} 
+        isFinalDecision={activeNode.isFinalDecision}
+        actions={
+          activeNode.isComment ? 
+          ( <Button 
               onClick={activateNode}
-              value={1}>Reset Survey</Button> 
-        : <div>
-            <Button 
+              value={activeNode.commentChildId}>Next</Button>
+          )
+          : activeNode.isFinalDecision ? 
+          ( <Button 
               onClick={activateNode}
-              value={activeNode.yesChildId}>Yes</Button>
-            <Button 
-              onClick={activateNode}
-              value={activeNode.noChildId}>No</Button>
-          </div>
-      }
-    />
+              value={1}>Reset Survey</Button>
+          )
+          : <div>
+              <Button 
+                onClick={activateNode}
+                value={activeNode.yesChildId}>Yes</Button>
+              <Button 
+                onClick={activateNode}
+                value={activeNode.noChildId}>No</Button>
+            </div>
+        }
+      />
   )
 }
 
