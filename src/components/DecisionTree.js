@@ -20,41 +20,38 @@ const DecisionTree = () => {
     setActiveNode(foundNode)
   }
 
-  if (activeNode === null) {
-    return (
-      <Intro actions={
+  return (
+    activeNode === null ?
+    ( <Intro actions={
         <Button 
           onClick={activateNode} 
           value={1}>Get Started</Button>
       } />
     )
-  } else {
-    return (
-      <NodeItem 
-        text={activeNode.text} 
-        details={activeNode.details} 
-        isFinalDecision={activeNode.isFinalDecision}
-        actions={
-          activeNode.isComment 
+    : <NodeItem 
+      text={activeNode.text} 
+      details={activeNode.details} 
+      isFinalDecision={activeNode.isFinalDecision}
+      actions={
+        activeNode.isComment 
+        ? <Button 
+            onClick={activateNode}
+            value={activeNode.commentChildId}>Next</Button>  
+        : activeNode.isFinalDecision
           ? <Button 
               onClick={activateNode}
-              value={activeNode.commentChildId}>Next</Button>  
-          : activeNode.isFinalDecision
-            ? <Button 
-                onClick={activateNode}
-                value={1}>Reset Survey</Button> 
-          : <div>
-              <Button 
-                onClick={activateNode}
-                value={activeNode.yesChildId}>Yes</Button>
-              <Button 
-                onClick={activateNode}
-                value={activeNode.noChildId}>No</Button>
-            </div>
-        }
-      />
-    )
-  }
+              value={1}>Reset Survey</Button> 
+        : <div>
+            <Button 
+              onClick={activateNode}
+              value={activeNode.yesChildId}>Yes</Button>
+            <Button 
+              onClick={activateNode}
+              value={activeNode.noChildId}>No</Button>
+          </div>
+      }
+    />
+  )
 }
 
 export default DecisionTree
