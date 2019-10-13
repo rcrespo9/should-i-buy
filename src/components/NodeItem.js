@@ -7,22 +7,20 @@ import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
 
 const NodeItem = (props) => {
-  const { text, details, isFinalDecision, actions } = props
+  const { text, details, actions, isFinalDecision } = props
 
   return (
     <ContentWrapper>
-      <SmallHeader>Should I Buy This?</SmallHeader>
+      <SmallHeader>{isFinalDecision ? "The verdict" : "Should I Buy This?"}</SmallHeader>
       <LargeHeader>{text}</LargeHeader>
       {details !== null &&
         <Paragraph>
           {details}
         </Paragraph>
       }
-      {!isFinalDecision &&
-        <ActionsWrapper>
-          { actions }
-        </ActionsWrapper>
-      }
+      <ActionsWrapper>
+        { actions }
+      </ActionsWrapper>
     </ContentWrapper>
   )
 }

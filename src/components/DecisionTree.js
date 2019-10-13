@@ -34,6 +34,24 @@ const DecisionTree = () => {
         text={activeNode.text} 
         details={activeNode.details} 
         isFinalDecision={activeNode.isFinalDecision}
+        actions={
+          activeNode.isComment 
+          ? <Button 
+              onClick={activateNode}
+              value={activeNode.commentChildId}>Next</Button>  
+          : activeNode.isFinalDecision
+            ? <Button 
+                onClick={activateNode}
+                value={1}>Reset Survey</Button> 
+          : <div>
+              <Button 
+                onClick={activateNode}
+                value={activeNode.yesChildId}>Yes</Button>
+              <Button 
+                onClick={activateNode}
+                value={activeNode.noChildId}>No</Button>
+            </div>
+        }
       />
     )
   }
