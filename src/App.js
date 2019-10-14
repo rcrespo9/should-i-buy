@@ -6,8 +6,8 @@ import GlobalStyles from './theme/globalStyles'
 import DecisionTree from './components/DecisionTree'
 
 const SiteWrapper = styled.div`
-  max-width: ${modularScale(14)}
-  margin: 0 auto
+  max-width: ${modularScale(14)};
+  margin: 0 auto;
 `
 
 const App = () => {
