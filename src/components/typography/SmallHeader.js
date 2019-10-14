@@ -4,7 +4,7 @@ import { modularScale } from 'polished'
 
 const StyledSmallHeader = styled.h1`
   font-size: ${modularScale(0)};
-  letter-spacing: ${modularScale(-9)};
+  letter-spacing: ${modularScale(-10)};
   text-transform: uppercase;
 `
 
