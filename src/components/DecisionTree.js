@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from "styled-components"
+import { modularScale } from 'polished'
 
 import nodesData from '../nodes.json'
 
@@ -7,7 +8,23 @@ import Intro from './Intro'
 import NodeItem from './NodeItem'
 
 const Button = styled.button`
-`
+  appearance: none;
+  min-width: ${modularScale(8)};
+  padding: ${modularScale(0)} ${modularScale(2)};
+  border: none;
+  color: #fff;
+  background-color: #305252;
+  font-size: ${modularScale(0)};
+  font-weight: 500;
+
+  + button {
+    margin-left: ${modularScale(2)};
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const DecisionTree = () => {
   const [activeNode, setActiveNode] = useState(null)

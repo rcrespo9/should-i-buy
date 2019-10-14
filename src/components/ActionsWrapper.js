@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { modularScale } from 'polished'
 
 const StyledActionsWrapper = styled.div`
+  margin-top: ${modularScale(3)};
 `
 
 const ActionsWrapper = (props) => {

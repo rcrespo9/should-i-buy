@@ -5,6 +5,7 @@ export default createGlobalStyle`
   ${normalize()}
   
   body {
+    color: #373E40;
     font-family: aktiv-grotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: ${stripUnit(modularScale(1))};
     -webkit-font-smoothing: antialiased;

@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { modularScale } from 'polished'
 
 const StyledSmallHeader = styled.h1`
-  font-size: ${modularScale(0)};
+  color: #305252;
+  margin-bottom: ${modularScale(-1)};
+  font-size: ${modularScale(-1)};
   letter-spacing: ${modularScale(-10)};
   text-transform: uppercase;
-`
+`;
 
 const SmallHeader = (props) => {
   const { tag, children } = props

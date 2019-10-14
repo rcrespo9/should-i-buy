@@ -1,9 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from "styled-components";
 import { modularScale } from 'polished'
 
 import GlobalStyles from './theme/globalStyles'
 import DecisionTree from './components/DecisionTree'
+
+const theme = {
+  primaryColor: '#373E40',
+  secondaryColor: '#305252'
+};
 
 const SiteWrapper = styled.div`
   max-width: ${modularScale(13)};
@@ -12,13 +17,15 @@ const SiteWrapper = styled.div`
 
 const App = () => {
   return (
-    <SiteWrapper>
-      <main>
-        <GlobalStyles />
-        <DecisionTree />
-      </main>
-    </SiteWrapper>
-  )
+    <ThemeProvider theme={theme}>
+      <SiteWrapper>
+        <main>
+          <GlobalStyles />
+          <DecisionTree />
+        </main>
+      </SiteWrapper>
+    </ThemeProvider>
+  );
 }
 
 export default App;
