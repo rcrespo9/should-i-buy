@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { modularScale } from 'polished'
 
 import GlobalStyles from './theme/globalStyles'
+import Iconography from './components/Iconography'
 import DecisionTree from './components/DecisionTree'
 
 const theme = {
@@ -20,6 +21,7 @@ const SiteWrapper = styled.div`
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <Iconography />
       <SiteWrapper>
         <main>
           <GlobalStyles />

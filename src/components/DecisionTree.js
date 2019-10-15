@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled, { ThemeProvider } from "styled-components"
+import styled from "styled-components"
 import { modularScale } from 'polished'
 
 import nodesData from '../nodes.json'

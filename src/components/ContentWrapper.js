@@ -6,6 +6,11 @@ const StyledContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 75% 25%;
   column-gap: ${modularScale(0)};
+  align-content: center;
+`
+
+const Figure = styled.figure`
+  margin: 0;
 `
 
 const ContentWrapper = (props) => {
@@ -15,7 +20,7 @@ const ContentWrapper = (props) => {
       <article>
         { content }
       </article>
-      <figure>{ icon }</figure>
+      <Figure>{ icon }</Figure>
     </StyledContentWrapper>
   )
 }
