@@ -12,8 +12,9 @@ const theme = {
 };
 
 const SiteWrapper = styled.div`
-  max-width: ${modularScale(13)};
+  max-width: ${modularScale(14)};
   margin: 0 auto;
+  padding: 0 ${modularScale(0)};
 `
 
 const App = () => {

@@ -10,19 +10,19 @@ const NodeItem = (props) => {
   const { text, details, actions, isFinalDecision } = props
 
   return (
-    <ContentWrapper>
-      <SmallHeader>{isFinalDecision ? "The verdict" : "Should I Buy This?"}</SmallHeader>
-      <LargeHeader>{text}</LargeHeader>
-      {details !== null &&
-        <Paragraph>
-          {details}
-        </Paragraph>
+    <ContentWrapper
+      content={
+        <div>
+          <SmallHeader>
+            {isFinalDecision ? "The verdict" : "Should I Buy This?"}
+          </SmallHeader>
+          <LargeHeader>{text}</LargeHeader>
+          {details !== null && <Paragraph>{details}</Paragraph>}
+          <ActionsWrapper>{actions}</ActionsWrapper>
+        </div>
       }
-      <ActionsWrapper>
-        { actions }
-      </ActionsWrapper>
-    </ContentWrapper>
-  )
+    />
+  );
 }
 
 export default NodeItem;

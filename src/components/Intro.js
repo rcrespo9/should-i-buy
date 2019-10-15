@@ -9,15 +9,19 @@ const Intro = props => {
   const { actions } = props
 
   return (
-    <ContentWrapper>
-      <LargeHeader tag="h1">Should I Buy This?</LargeHeader>
-      <Paragraph>
-        Decision support tools are an effective way to help prevent overspending. Whenever you're tempted to pull out your wallet, go through this questionnaire first. By adding this step to your purchasing process, you can retrain yourself to think about every purchase before you make it.
-      </Paragraph>
-      <ActionsWrapper>
-        { actions }
-      </ActionsWrapper>
-    </ContentWrapper>
+    <ContentWrapper 
+      content={
+        <div>
+          <LargeHeader tag="h1">Should I Buy This?</LargeHeader>
+            <Paragraph>
+              Decision support tools are an effective way to help prevent overspending. Whenever you're tempted to pull out your wallet, go through this questionnaire first. By adding this step to your purchasing process, you can retrain yourself to think about every purchase before you make it.
+            </Paragraph>
+            <ActionsWrapper>
+              { actions }
+            </ActionsWrapper>
+          </div>
+      }
+    />
   )
 }
 
