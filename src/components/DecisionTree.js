@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 import { modularScale } from 'polished'
 
 import nodesData from '../nodes.json'
@@ -13,7 +13,7 @@ const Button = styled.button`
   padding: ${modularScale(0)} ${modularScale(2)};
   border: none;
   color: #fff;
-  background-color: #305252;
+  background-color: ${(props) => props.theme.secondaryColor};
   font-size: ${modularScale(0)};
   font-weight: 500;
 

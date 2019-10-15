@@ -1,9 +1,9 @@
 import React from "react"
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { modularScale } from 'polished'
 
 const StyledSmallHeader = styled.h1`
-  color: #305252;
+  color: ${props => props.theme.secondaryColor};
   margin-bottom: ${modularScale(-1)};
   font-size: ${modularScale(-1)};
   letter-spacing: ${modularScale(-10)};
