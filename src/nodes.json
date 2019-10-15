@@ -8,7 +8,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 9,
@@ -96,7 +104,8 @@
     "commentChildId": null,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 10,
@@ -107,7 +116,8 @@
     "commentChildId": null,
     "isFinalDecision": true,
     "isPositiveDecision": true,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 11,
@@ -118,7 +128,8 @@
     "commentChildId": null,
     "isFinalDecision": true,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 12,
@@ -129,7 +140,8 @@
     "commentChildId": null,
     "isFinalDecision": true,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 13,
@@ -140,7 +152,8 @@
     "commentChildId": null,
     "isFinalDecision": true,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 14,
@@ -151,7 +164,8 @@
     "commentChildId": null,
     "isFinalDecision": true,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 15,
@@ -162,7 +176,8 @@
     "commentChildId": null,
     "isFinalDecision": true,
     "isPositiveDecision": false,
-    "isComment": false
+    "isComment": false,
+    "icon": ""
   },
   {
     "id": 16,
@@ -173,6 +188,7 @@
     "commentChildId": 11,
     "isFinalDecision": false,
     "isPositiveDecision": false,
-    "isComment": true
+    "isComment": true,
+    "icon": ""
   }
 ]

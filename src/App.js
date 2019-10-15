@@ -6,8 +6,9 @@ import GlobalStyles from './theme/globalStyles'
 import DecisionTree from './components/DecisionTree'
 
 const theme = {
-  primaryColor: '#373E40',
-  secondaryColor: '#305252'
+  primaryColor: "#373E40",
+  secondaryColor: "#305252",
+  tertiaryColor: "#488286"
 };
 
 const SiteWrapper = styled.div`
