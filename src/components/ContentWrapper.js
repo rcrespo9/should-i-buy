@@ -4,9 +4,9 @@ import { modularScale } from "polished"
 
 const StyledContentWrapper = styled.div`
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 70% 30%;
   column-gap: ${modularScale(0)};
-  align-content: center;
+  align-items: center;
 `
 
 const Figure = styled.figure`
