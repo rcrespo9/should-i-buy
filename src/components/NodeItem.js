@@ -7,7 +7,7 @@ import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
 
 const NodeItem = (props) => {
-  const { text, details, actions, isFinalDecision } = props
+  const { text, details, actions, isFinalDecision, icon } = props
 
   return (
     <ContentWrapper
