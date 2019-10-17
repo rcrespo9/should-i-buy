@@ -1,11 +1,21 @@
-import React, { useState } from 'react'
-import styled, { ThemeProvider } from "styled-components"
+import React, { useState, useEffect, useRef } from 'react'
+import styled from "styled-components"
 import { modularScale } from 'polished'
 
 import nodesData from '../nodes.json'
 
 import Intro from './Intro'
 import NodeItem from './NodeItem'
+
+const usePrevious = value => {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+}
 
 const Button = styled.button`
   appearance: none;
@@ -29,6 +39,7 @@ const Button = styled.button`
 const DecisionTree = () => {
   const [activeNode, setActiveNode] = useState(null)
   const [selectedNode, setSelectedNode] = useState(null)
+  const prevActiveNode = usePrevious(activeNode)
   const [nodes] = useState(nodesData)
 
   const selectNode = (evt, id = null) => {
@@ -44,7 +55,7 @@ const DecisionTree = () => {
     setActiveNode(selectedNode)
   }
 
-  const nextNode = evt => {
+  const goToNode = evt => {
     const nodeId = parseInt(evt.currentTarget.value, 10)
     const foundNode = selectNode(null, nodeId);
 
@@ -54,7 +65,7 @@ const DecisionTree = () => {
   return activeNode === null ? (
     <Intro
       actions={
-        <Button onClick={nextNode} value={1}>
+        <Button onClick={goToNode} value={1}>
           Get Started
         </Button>
       }
@@ -66,11 +77,11 @@ const DecisionTree = () => {
       isFinalDecision={activeNode.isFinalDecision}
       actions={
         activeNode.isComment ? (
-          <Button onClick={nextNode} value={activeNode.commentChildId}>
+          <Button onClick={goToNode} value={activeNode.commentChildId}>
             Next
           </Button>
         ) : activeNode.isFinalDecision ? (
-          <Button onClick={nextNode} value={1}>
+          <Button onClick={goToNode} value={1}>
             Reset Survey
           </Button>
         ) : (
@@ -95,9 +106,11 @@ const DecisionTree = () => {
                 value={activeNode.noChildId}
               />
             </label>
-            {/* <Button 
-                onClick={activateNode}
-                value={activeNode.yesChildId}>Previous</Button> */}
+            {prevActiveNode !== null && activeNode.id !== 1 && activeNode.id !== prevActiveNode.id && (
+              <Button onClick={goToNode} value={prevActiveNode.id}>
+                Previous
+              </Button>
+            )}
             <Button
               onClick={activateNode}
               value={selectedNode.id}
