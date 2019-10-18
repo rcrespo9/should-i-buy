@@ -4,7 +4,7 @@ import { modularScale } from "polished"
 
 const StyledContentWrapper = styled.div`
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 75% 25%;
   column-gap: ${modularScale(0)};
   align-items: center;
 `

@@ -7,7 +7,7 @@ import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
 
 const NodeItem = (props) => {
-  const { text, details, actions, isFinalDecision, icon } = props
+  const { text, details, actions, navigation, isFinalDecision } = props
 
   return (
     <ContentWrapper
@@ -19,6 +19,7 @@ const NodeItem = (props) => {
           <LargeHeader>{text}</LargeHeader>
           {details !== null && <Paragraph>{details}</Paragraph>}
           <ActionsWrapper>{actions}</ActionsWrapper>
+          { navigation }
         </div>
       }
     />

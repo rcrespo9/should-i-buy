@@ -7,16 +7,6 @@ import nodesData from '../nodes.json'
 import Intro from './Intro'
 import NodeItem from './NodeItem'
 
-const usePrevious = value => {
-  const ref = useRef();
-
-  useEffect(() => {
-    ref.current = value;
-  });
-
-  return ref.current;
-}
-
 const Button = styled.button`
   appearance: none;
   min-width: ${modularScale(8)};
@@ -38,91 +28,49 @@ const Button = styled.button`
 
 const DecisionTree = () => {
   const [activeNode, setActiveNode] = useState(null)
-  const [selectedNode, setSelectedNode] = useState(null)
-  const prevActiveNode = usePrevious(activeNode)
   const [nodes] = useState(nodesData)
 
-  const selectNode = (evt, id = null) => {
-    const nodeId = id || parseInt(evt.currentTarget.value, 10);
-    const foundNode = nodes.find((node) => node.id === nodeId)
-
-    setSelectedNode(foundNode)
-
-    return foundNode
-  }
-
   const activateNode = evt => {
-    setActiveNode(selectedNode)
-  }
-
-  const goToNode = evt => {
-    const nodeId = parseInt(evt.currentTarget.value, 10)
-    const foundNode = selectNode(null, nodeId);
+    const nodeId = parseInt(evt.currentTarget.value, 10);
+    const foundNode = nodes.find((node) => node.id === nodeId)
 
     setActiveNode(foundNode)
   }
 
-  return activeNode === null ? (
-    <Intro
-      actions={
-        <Button onClick={goToNode} value={1}>
-          Get Started
-        </Button>
-      }
-    />
-  ) : (
-    <NodeItem
-      text={activeNode.text}
-      details={activeNode.details}
-      isFinalDecision={activeNode.isFinalDecision}
-      actions={
-        activeNode.isComment ? (
-          <Button onClick={goToNode} value={activeNode.commentChildId}>
-            Next
-          </Button>
-        ) : activeNode.isFinalDecision ? (
-          <Button onClick={goToNode} value={1}>
-            Reset Survey
-          </Button>
-        ) : (
-          <div>
-            <label>
-              Yes
-              <input
-                type="radio"
-                name="nodeChoice"
-                onChange={selectNode}
-                checked={selectedNode.id === activeNode.yesChildId}
-                value={activeNode.yesChildId}
-              />
-            </label>
-            <label>
-              No
-              <input
-                type="radio"
-                name="nodeChoice"
-                onChange={selectNode}
-                checked={selectedNode.id === activeNode.noChildId}
-                value={activeNode.noChildId}
-              />
-            </label>
-            {prevActiveNode !== null && activeNode.id !== 1 && activeNode.id !== prevActiveNode.id && (
-              <Button onClick={goToNode} value={prevActiveNode.id}>
-                Previous
-              </Button>
-            )}
-            <Button
+  return (
+    activeNode === null ?
+    ( <Intro actions={
+        <Button 
+          onClick={activateNode} 
+          value={1}>Get Started</Button>
+      } />
+    )
+    : <NodeItem 
+        text={activeNode.text} 
+        details={activeNode.details} 
+        isFinalDecision={activeNode.isFinalDecision}
+        actions={
+          activeNode.isComment ? 
+          ( <Button 
               onClick={activateNode}
-              value={selectedNode.id}
-              disabled={activeNode.id === selectedNode.id}
-            >
-              Next
-            </Button>
-          </div>
-        )
-      }
-    />
-  );
+              value={activeNode.commentChildId}>Next</Button>
+          )
+          : activeNode.isFinalDecision ? 
+          ( <Button 
+              onClick={activateNode}
+              value={1}>Reset Survey</Button>
+          )
+          : <div>
+              <Button 
+                onClick={activateNode}
+                value={activeNode.yesChildId}>Yes</Button>
+              <Button 
+                onClick={activateNode}
+                value={activeNode.noChildId}>No</Button>
+            </div>
+        }
+      />
+  )
 }
 
 export default DecisionTree
