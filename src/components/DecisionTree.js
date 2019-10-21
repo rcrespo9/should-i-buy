@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useReducer } from 'react'
 import styled from "styled-components"
 import { modularScale } from 'polished'
 
@@ -6,6 +6,24 @@ import nodesData from '../nodes.json'
 
 import Intro from './Intro'
 import NodeItem from './NodeItem'
+
+const initialState = {
+  activeNode: null,
+  prevActiveNode: null,
+  selectedNode: null
+}
+
+const decisionTreeReducer = (state, action) => {
+  switch (action.type) {
+    case 'activateNode':
+      return { ...state, activeNode: action.payload }
+    case 'selectNode':
+      return { ...state, selectedNode: action.payload }
+    case 'setPreviousNode':
+      return { ...state, prevActiveNode: action.payload}
+    default: throw new Error('unexpected action')      
+  }
+}
 
 const Button = styled.button`
   appearance: none;
@@ -27,18 +45,32 @@ const Button = styled.button`
 `;
 
 const DecisionTree = () => {
-  const [activeNode, setActiveNode] = useState(null)
+  const [state, dispatch] = useReducer(decisionTreeReducer, initialState)
   const [nodes] = useState(nodesData)
 
-  const activateNode = evt => {
-    const nodeId = parseInt(evt.currentTarget.value, 10);
+  const findNode = (id) => {
+    const nodeId = parseInt(id, 10)
     const foundNode = nodes.find((node) => node.id === nodeId)
 
-    setActiveNode(foundNode)
+    return foundNode
+  }
+
+  const activateNode = evt => {
+    const foundNode = findNode(evt.currentTarget.value)
+
+    dispatch({
+      type: 'activateNode',
+      payload: foundNode
+    })
+
+    dispatch({
+      type: 'setPreviousNode',
+      payload: state.activeNode
+    })
   }
 
   return (
-    activeNode === null ?
+    state.activeNode === null ?
     ( <Intro actions={
         <Button 
           onClick={activateNode} 
@@ -46,16 +78,16 @@ const DecisionTree = () => {
       } />
     )
     : <NodeItem 
-        text={activeNode.text} 
-        details={activeNode.details} 
-        isFinalDecision={activeNode.isFinalDecision}
+        text={state.activeNode.text} 
+        details={state.activeNode.details} 
+        isFinalDecision={state.activeNode.isFinalDecision}
         actions={
-          activeNode.isComment ? 
+          state.activeNode.isComment ? 
           ( <Button 
               onClick={activateNode}
-              value={activeNode.commentChildId}>Next</Button>
+              value={state.activeNode.commentChildId}>Next</Button>
           )
-          : activeNode.isFinalDecision ? 
+          : state.activeNode.isFinalDecision ? 
           ( <Button 
               onClick={activateNode}
               value={1}>Reset Survey</Button>
@@ -63,10 +95,10 @@ const DecisionTree = () => {
           : <div>
               <Button 
                 onClick={activateNode}
-                value={activeNode.yesChildId}>Yes</Button>
+                value={state.activeNode.yesChildId}>Yes</Button>
               <Button 
                 onClick={activateNode}
-                value={activeNode.noChildId}>No</Button>
+                value={state.activeNode.noChildId}>No</Button>
             </div>
         }
       />
