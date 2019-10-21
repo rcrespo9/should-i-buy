@@ -105,16 +105,16 @@ const DecisionTree = () => {
             Yes
             <RadioInput
               onChange={selectNode}
-              value={state.activeNode.yesChildId}
-              checked={state.selectedNode ? state.activeNode.yesChildId === state.selectedNode.id : false}
+              value={state.activeNode.yesRoute}
+              checked={state.selectedNode ? state.activeNode.yesRoute === state.selectedNode.id : false}
             />
           </Label>
           <Label>
             No
             <RadioInput
               onChange={selectNode}
-              value={state.activeNode.noChildId}
-              checked={state.selectedNode ? state.activeNode.noChildId === state.selectedNode.id : false}
+              value={state.activeNode.noRoute}
+              checked={state.selectedNode ? state.activeNode.noRoute === state.selectedNode.id : false}
             />
           </Label>
         </div>
@@ -123,7 +123,7 @@ const DecisionTree = () => {
         state.activeNode.isComment ? (
           <Button
             onClick={activateNode}
-            value={state.activeNode.commentChildId}
+            value={state.activeNode.commentRoute}
           >
             Next
           </Button>
