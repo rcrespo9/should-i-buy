@@ -2,12 +2,13 @@ import React from 'react';
 
 import ContentWrapper from "./ContentWrapper";
 import ActionsWrapper from "./ActionsWrapper";
+import ChoicesWrapper from "./ChoicesWrapper";
 import SmallHeader from "./typography/SmallHeader";
 import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
 
 const NodeItem = (props) => {
-  const { text, details, actions, navigation, isFinalDecision } = props
+  const { text, details, choices, actions, isFinalDecision, isComment } = props
 
   return (
     <ContentWrapper
@@ -18,8 +19,10 @@ const NodeItem = (props) => {
           </SmallHeader>
           <LargeHeader>{text}</LargeHeader>
           {details !== null && <Paragraph>{details}</Paragraph>}
+          {!isFinalDecision && !isComment &&
+            <ChoicesWrapper>{choices}</ChoicesWrapper>
+          }
           <ActionsWrapper>{actions}</ActionsWrapper>
-          { navigation }
         </div>
       }
     />

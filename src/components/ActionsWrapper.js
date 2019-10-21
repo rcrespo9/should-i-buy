@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { modularScale } from 'polished'
 
 const StyledActionsWrapper = styled.div`
+  display: grid;
   margin-top: ${modularScale(3)};
+  justify-content: space-between;
 `
 
 const ActionsWrapper = (props) => {
