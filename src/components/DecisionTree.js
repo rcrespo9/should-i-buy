@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import styled from "styled-components";
-import { modularScale } from "polished";
+import { modularScale, rgba } from "polished";
 
 import nodesData from "../nodes.json";
 
@@ -12,6 +12,7 @@ const Button = styled.button`
   min-width: ${modularScale(8)};
   padding: ${modularScale(0)} ${modularScale(2)};
   border: none;
+  border-radius: 3px;
   color: #fff;
   background-color: ${props => props.theme.secondaryColor};
   font-size: ${modularScale(0)};
@@ -22,13 +23,27 @@ const Button = styled.button`
   }
 `;
 
-const Label = styled.label``;
+const Label = styled.label`
+  border: 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: ${modularScale(1)};
 
-const RadioInput = styled.input.attrs(prop => ({
+  &:checked {
+    color: red
+  }
+`;
+
+const RadioInput = styled.input.attrs(props => ({
   type: "radio",
-  name: "nodeChoice"
+  name: "nodeChoice",
+  id: props.id
 }))`
   display: none;
+
+  &:checked + label {
+    background-color: ${rgba('red', .3)}
+  }
 `;
 
 const initialState = {
@@ -134,29 +149,31 @@ const DecisionTree = () => {
       isComment={state.activeNode.isComment}
       choices={
         <>
-          <Label>
+          <RadioInput
+            id="yesChoice"
+            onChange={selectNodeHandler}
+            value={state.activeNode.yesRoute}
+            checked={
+              state.selectedNode
+                ? state.activeNode.yesRoute === state.selectedNode.id
+                : false
+            }
+          />
+          <Label htmlFor="yesChoice">
             Yes
-            <RadioInput
-              onChange={selectNodeHandler}
-              value={state.activeNode.yesRoute}
-              checked={
-                state.selectedNode
-                  ? state.activeNode.yesRoute === state.selectedNode.id
-                  : false
-              }
-            />
           </Label>
-          <Label>
+          <RadioInput
+            id="noChoice"
+            onChange={selectNodeHandler}
+            value={state.activeNode.noRoute}
+            checked={
+              state.selectedNode
+                ? state.activeNode.noRoute === state.selectedNode.id
+                : false
+            }
+          />
+          <Label htmlFor="noChoice">
             No
-            <RadioInput
-              onChange={selectNodeHandler}
-              value={state.activeNode.noRoute}
-              checked={
-                state.selectedNode
-                  ? state.activeNode.noRoute === state.selectedNode.id
-                  : false
-              }
-            />
           </Label>
         </>
       }
