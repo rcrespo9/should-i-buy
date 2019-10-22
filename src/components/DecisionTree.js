@@ -100,6 +100,11 @@ const DecisionTree = () => {
     })
 
     dispatch({
+      type: 'SELECT_NODE',
+      payload: state.activeNode
+    })
+
+    dispatch({
       type: 'REMOVE_PREV_NODE',
       payload: prevNodeItem
     })
