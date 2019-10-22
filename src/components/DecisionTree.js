@@ -147,16 +147,26 @@ const DecisionTree = () => {
       }
       actions={
         state.activeNode.isComment ? (
-          <Button
-            onClick={nextNode}
-            value={state.activeNode.commentRoute}
-          >
-            Next
-          </Button>
+          <div>
+            <Button onClick={prevNode}>
+              Previous
+            </Button>
+            <Button
+              onClick={nextNode}
+              value={state.activeNode.commentRoute}
+            >
+              Next
+            </Button>
+          </div>
         ) : state.activeNode.isFinalDecision ? (
-          <Button onClick={resetSurvey}>
-            Reset Survey
-          </Button>
+          <div>
+            <Button onClick={prevNode}>
+              Previous
+            </Button>
+            <Button onClick={resetSurvey}>
+              Reset Survey
+            </Button>
+          </div>
         ) : (
           <div>
             {state.prevNodes.length > 1 && (
