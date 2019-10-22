@@ -33,15 +33,11 @@ const Button = styled.button`
 
 const Label = styled.label`
   padding: ${modularScale(-2)} ${modularScale(-1)};
-  border: 1px solid;
+  border: 2px solid ${props => props.theme.grayBorderColor};
   border-radius: ${props => props.theme.borderRadius};
   cursor: pointer;
   color: ${props => props.theme.grayColor};
   font-size: ${modularScale(2)};
-
-  &:checked {
-    color: red;
-  }
 `;
 
 const RadioInput = styled.input.attrs(props => ({
@@ -52,7 +48,9 @@ const RadioInput = styled.input.attrs(props => ({
   display: none;
 
   &:checked + label {
-    background-color: ${rgba('red', .3)}
+    border-color: ${props => props.theme.secondaryColor};
+    color: ${props => props.theme.secondaryColor};
+    background-color: ${props => props.theme.lightBgColor};
   }
 `;
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from "styled-components";
-import { modularScale } from 'polished'
+import { modularScale, rgba } from 'polished'
 
 import GlobalStyles from './theme/globalStyles'
 import Iconography from './components/Iconography'
@@ -10,8 +10,10 @@ const theme = {
   primaryColor: "#373E40",
   secondaryColor: "#305252",
   tertiaryColor: "#488286",
+  lightBgColor: rgba("#488286", 0.1),
   grayColor: "#5A5C65",
-  borderRadius: "3px"
+  borderRadius: "5px",
+  grayBorderColor: rgba("#5A5C65", .5)
 };
 
 const SiteWrapper = styled.div`
