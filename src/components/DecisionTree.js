@@ -57,7 +57,6 @@ const RadioInput = styled.input.attrs(prop => ({
 
 const DecisionTree = () => {
   const [state, dispatch] = useReducer(decisionTreeReducer, initialState)
-  const [selectedNode, selectNode] = useState(null)
   const [nodes] = useState(nodesData)
 
   const findNode = (id) => {
