@@ -10,7 +10,8 @@ import NodeItem from './NodeItem'
 const initialState = {
   activeNode: null,
   prevActiveNode: null,
-  selectedNode: null
+  selectedNode: null,
+  previousNodes: [0]
 }
 
 const decisionTreeReducer = (state, action) => {
@@ -19,6 +20,10 @@ const decisionTreeReducer = (state, action) => {
       return { ...state, activeNode: action.payload }
     case 'selectNode':
       return { ...state, selectedNode: action.payload }
+    case 'addPreviousNode':
+      return { ...state, previousNodes: [...state.previousNodes, action.payload] }
+    case 'removePreviousNode':
+      return { ...state, previousNodes: state.previousNodes.filter(nodeId => nodeId !== action.payload) }
     case 'setPreviousNode':
       return { ...state, prevActiveNode: action.payload}
     default: throw new Error('unexpected action')      
@@ -74,6 +79,13 @@ const DecisionTree = () => {
       type: 'setPreviousNode',
       payload: state.activeNode
     })
+
+    if (state.activeNode) {
+      dispatch({
+        type: 'addPreviousNode',
+        payload: state.activeNode.id
+      })
+    }
   }
 
   const selectNode = evt => {
