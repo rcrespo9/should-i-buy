@@ -8,7 +8,7 @@ import LargeHeader from "./typography/LargeHeader";
 import Paragraph from "./typography/Paragraph";
 
 const NodeItem = (props) => {
-  const { text, details, choices, actions, isFinalDecision, isComment } = props
+  const { text, details, choices, prevBtn, nextBtn, isFinalDecision, isComment } = props
 
   return (
     <ContentWrapper
@@ -22,7 +22,10 @@ const NodeItem = (props) => {
           {!isFinalDecision && !isComment &&
             <ChoicesWrapper>{choices}</ChoicesWrapper>
           }
-          <ActionsWrapper>{actions}</ActionsWrapper>
+          <ActionsWrapper>
+            {prevBtn}
+            {nextBtn}
+          </ActionsWrapper>
         </div>
       }
     />
