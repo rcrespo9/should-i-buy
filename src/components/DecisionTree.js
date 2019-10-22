@@ -57,6 +57,7 @@ const RadioInput = styled.input.attrs(prop => ({
 
 const DecisionTree = () => {
   const [state, dispatch] = useReducer(decisionTreeReducer, initialState)
+  const [selectedNode, selectNode] = useState(null)
   const [nodes] = useState(nodesData)
 
   const findNode = (id) => {
@@ -66,7 +67,7 @@ const DecisionTree = () => {
     return foundNode
   }
 
-  const SELECT_NODE = evt => {
+  const selectNodeHandler = evt => {
     const foundNode = findNode(evt.currentTarget.value)
 
     dispatch({
@@ -130,7 +131,7 @@ const DecisionTree = () => {
           <Label>
             Yes
             <RadioInput
-              onChange={SELECT_NODE}
+              onChange={selectNodeHandler}
               value={state.activeNode.yesRoute}
               checked={state.selectedNode ? state.activeNode.yesRoute === state.selectedNode.id : false}
             />
@@ -138,7 +139,7 @@ const DecisionTree = () => {
           <Label>
             No
             <RadioInput
-              onChange={SELECT_NODE}
+              onChange={selectNodeHandler}
               value={state.activeNode.noRoute}
               checked={state.selectedNode ? state.activeNode.noRoute === state.selectedNode.id : false}
             />
@@ -177,7 +178,7 @@ const DecisionTree = () => {
             <Button
               onClick={nextNode}
               value={state.selectedNode ? state.selectedNode.id : null}
-              disabled={state.selectedNode ? false : true}
+              disabled={state.selectedNode ? state.selectedNode.id === state.activeNode.id : true}
             >
               Next
             </Button>
