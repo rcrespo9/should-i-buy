@@ -10,7 +10,7 @@ const theme = {
   primaryColor: "#373E40",
   secondaryColor: "#305252",
   tertiaryColor: "#488286",
-  quaternaryColor: "#5A5C65",
+  grayColor: "#5A5C65",
   borderRadius: "3px"
 };
 

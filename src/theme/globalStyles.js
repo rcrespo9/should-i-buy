@@ -15,6 +15,6 @@ export default createGlobalStyle`
   h1,
   h2,
   p {
-    margin-top: 0;
+    margin: 0;
   }
 `;

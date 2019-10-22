@@ -18,16 +18,25 @@ const Button = styled.button`
   font-size: ${modularScale(0)};
   font-weight: 500;
 
+  &:disabled {
+    opacity: .85;
+  }
+
   &:hover {
     cursor: pointer;
+  }
+
+  &:disabled:hover {
+    cursor: not-allowed;
   }
 `;
 
 const Label = styled.label`
+  padding: ${modularScale(-2)} ${modularScale(-1)};
   border: 1px solid;
   border-radius: ${props => props.theme.borderRadius};
   cursor: pointer;
-  color: ${props => props.theme.quaternaryColor};
+  color: ${props => props.theme.grayColor};
   font-size: ${modularScale(2)};
 
   &:checked {

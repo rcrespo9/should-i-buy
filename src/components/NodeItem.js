@@ -27,7 +27,7 @@ const NodeItem = props => {
           <LargeHeader>{text}</LargeHeader>
           {details !== null && <Paragraph>{details}</Paragraph>}
           {!isFinalDecision && !isComment && (
-            <ActionsWrapper>{choices}</ActionsWrapper>
+            <ActionsWrapper fullWidth={true}>{choices}</ActionsWrapper>
           )}
           <ActionsWrapper>
             {prevBtn}
