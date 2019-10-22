@@ -174,11 +174,9 @@ const DecisionTree = () => {
           </div>
         ) : (
           <div>
-            {state.prevNodes.length > 1 && (
-              <Button onClick={prevNode}>
-                Previous
-              </Button>
-            )}
+            <Button onClick={state.prevNodes.length > 1 ? prevNode : resetSurvey}>
+              Previous
+            </Button>
             <Button
               onClick={nextNode}
               value={state.selectedNode ? state.selectedNode.id : null}
