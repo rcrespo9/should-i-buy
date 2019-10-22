@@ -137,7 +137,7 @@ const DecisionTree = () => {
       isFinalDecision={state.activeNode.isFinalDecision}
       isComment={state.activeNode.isComment}
       choices={
-        <div>
+        <>
           <Label>
             Yes
             <RadioInput
@@ -162,7 +162,7 @@ const DecisionTree = () => {
               }
             />
           </Label>
-        </div>
+        </>
       }
       prevBtn={
         <Button onClick={state.prevNodes.length > 1 ? prevNode : resetSurvey}>
