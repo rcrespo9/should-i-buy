@@ -7,32 +7,6 @@ import nodesData from "../nodes.json";
 import Intro from "./Intro";
 import NodeItem from "./NodeItem";
 
-const initialState = {
-  activeNode: null,
-  selectedNode: null,
-  prevNodes: [0]
-};
-
-const decisionTreeReducer = (state, action) => {
-  switch (action.type) {
-    case "ACTIVATE_NODE":
-      return { ...state, activeNode: action.payload };
-    case "SELECT_NODE":
-      return { ...state, selectedNode: action.payload };
-    case "ADD_PREV_NODE":
-      return { ...state, prevNodes: [...state.prevNodes, action.payload] };
-    case "REMOVE_PREV_NODE":
-      return {
-        ...state,
-        prevNodes: state.prevNodes.filter(nodeId => nodeId !== action.payload)
-      };
-    case "RESET":
-      return { ...initialState };
-    default:
-      throw new Error("unexpected action");
-  }
-};
-
 const Button = styled.button`
   appearance: none;
   min-width: ${modularScale(8)};
@@ -60,6 +34,32 @@ const RadioInput = styled.input.attrs(prop => ({
 }))`
   display: none;
 `;
+
+const initialState = {
+  activeNode: null,
+  selectedNode: null,
+  prevNodes: [0]
+};
+
+const decisionTreeReducer = (state, action) => {
+  switch (action.type) {
+    case "ACTIVATE_NODE":
+      return { ...state, activeNode: action.payload };
+    case "SELECT_NODE":
+      return { ...state, selectedNode: action.payload };
+    case "ADD_PREV_NODE":
+      return { ...state, prevNodes: [...state.prevNodes, action.payload] };
+    case "REMOVE_PREV_NODE":
+      return {
+        ...state,
+        prevNodes: state.prevNodes.filter(nodeId => nodeId !== action.payload)
+      };
+    case "RESET":
+      return { ...initialState };
+    default:
+      throw new Error("unexpected action");
+  }
+};
 
 const DecisionTree = () => {
   const [state, dispatch] = useReducer(decisionTreeReducer, initialState);

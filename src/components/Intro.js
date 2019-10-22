@@ -4,7 +4,6 @@ import ContentWrapper from './ContentWrapper'
 import ActionsWrapper from './ActionsWrapper'
 import LargeHeader from './typography/LargeHeader'
 import Paragraph from './typography/Paragraph'
-import Icon from './Icon'
 
 const Intro = props => {
   const { actions } = props
@@ -24,7 +23,6 @@ const Intro = props => {
           <ActionsWrapper>{actions}</ActionsWrapper>
         </div>
       }
-      icon={<Icon href="#icon-business-question" />}
     />
   );
 }
