@@ -17,10 +17,6 @@ const Button = styled.button`
   font-size: ${modularScale(0)};
   font-weight: 500;
 
-  + button {
-    margin-left: ${modularScale(2)};
-  }
-
   &:hover {
     cursor: pointer;
   }
