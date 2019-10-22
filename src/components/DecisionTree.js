@@ -12,7 +12,7 @@ const Button = styled.button`
   min-width: ${modularScale(8)};
   padding: ${modularScale(0)} ${modularScale(2)};
   border: none;
-  border-radius: 3px;
+  border-radius: ${props => props.theme.borderRadius};
   color: #fff;
   background-color: ${props => props.theme.secondaryColor};
   font-size: ${modularScale(0)};
@@ -25,12 +25,13 @@ const Button = styled.button`
 
 const Label = styled.label`
   border: 1px solid;
-  border-radius: 3px;
+  border-radius: ${props => props.theme.borderRadius};
   cursor: pointer;
-  font-size: ${modularScale(1)};
+  color: ${props => props.theme.quaternaryColor};
+  font-size: ${modularScale(2)};
 
   &:checked {
-    color: red
+    color: red;
   }
 `;
 
