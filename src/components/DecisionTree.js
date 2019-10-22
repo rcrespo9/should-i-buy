@@ -9,23 +9,22 @@ import NodeItem from './NodeItem'
 
 const initialState = {
   activeNode: null,
-  prevActiveNode: null,
   selectedNode: null,
-  previousNodes: [0]
+  prevNodes: [0]
 }
 
 const decisionTreeReducer = (state, action) => {
   switch (action.type) {
-    case 'activateNode':
+    case 'ACTIVATE_NODE':
       return { ...state, activeNode: action.payload }
-    case 'selectNode':
+    case 'SELECT_NODE':
       return { ...state, selectedNode: action.payload }
-    case 'addPreviousNode':
-      return { ...state, previousNodes: [...state.previousNodes, action.payload] }
-    case 'removePreviousNode':
-      return { ...state, previousNodes: state.previousNodes.filter(nodeId => nodeId !== action.payload) }
-    case 'setPreviousNode':
-      return { ...state, prevActiveNode: action.payload}
+    case 'ADD_PREV_NODE':
+      return { ...state, prevNodes: [...state.prevNodes, action.payload] }
+    case 'REMOVE_PREV_NODE':
+      return { ...state, prevNodes: state.prevNodes.filter(nodeId => nodeId !== action.payload) }
+    case 'RESET':
+      return { ...initialState }
     default: throw new Error('unexpected action')      
   }
 }
@@ -67,40 +66,55 @@ const DecisionTree = () => {
     return foundNode
   }
 
-  const activateNode = evt => {
+  const SELECT_NODE = evt => {
     const foundNode = findNode(evt.currentTarget.value)
 
     dispatch({
-      type: 'activateNode',
+      type: 'SELECT_NODE',
       payload: foundNode
     })
+  }
+
+  const nextNode = evt => {
+    const foundNode = findNode(evt.currentTarget.value)
 
     dispatch({
-      type: 'setPreviousNode',
-      payload: state.activeNode
+      type: 'ACTIVATE_NODE',
+      payload: foundNode
     })
 
     if (state.activeNode) {
       dispatch({
-        type: 'addPreviousNode',
+        type: 'ADD_PREV_NODE',
         payload: state.activeNode.id
       })
     }
   }
 
-  const selectNode = evt => {
-    const foundNode = findNode(evt.currentTarget.value)
+  const prevNode = () => {
+    const prevNodeItem = state.prevNodes[state.prevNodes.length - 1]
 
     dispatch({
-      type: 'selectNode',
-      payload: foundNode
+      type: 'ACTIVATE_NODE',
+      payload: findNode(prevNodeItem)
+    })
+
+    dispatch({
+      type: 'REMOVE_PREV_NODE',
+      payload: prevNodeItem
+    })
+  }
+
+  const resetSurvey = () => {
+    dispatch({
+      type: 'RESET'
     })
   }
 
   return state.activeNode === null ? (
     <Intro
       actions={
-        <Button onClick={activateNode} value={1}>
+        <Button onClick={nextNode} value={1}>
           Get Started
         </Button>
       }
@@ -116,7 +130,7 @@ const DecisionTree = () => {
           <Label>
             Yes
             <RadioInput
-              onChange={selectNode}
+              onChange={SELECT_NODE}
               value={state.activeNode.yesRoute}
               checked={state.selectedNode ? state.activeNode.yesRoute === state.selectedNode.id : false}
             />
@@ -124,7 +138,7 @@ const DecisionTree = () => {
           <Label>
             No
             <RadioInput
-              onChange={selectNode}
+              onChange={SELECT_NODE}
               value={state.activeNode.noRoute}
               checked={state.selectedNode ? state.activeNode.noRoute === state.selectedNode.id : false}
             />
@@ -134,24 +148,24 @@ const DecisionTree = () => {
       actions={
         state.activeNode.isComment ? (
           <Button
-            onClick={activateNode}
+            onClick={nextNode}
             value={state.activeNode.commentRoute}
           >
             Next
           </Button>
         ) : state.activeNode.isFinalDecision ? (
-          <Button onClick={activateNode} value={1}>
+          <Button onClick={resetSurvey}>
             Reset Survey
           </Button>
         ) : (
           <div>
-            {state.prevActiveNode && state.activeNode.id !== 1 && (
-              <Button onClick={activateNode} value={state.prevActiveNode.id}>
+            {state.prevNodes.length > 1 && (
+              <Button onClick={prevNode}>
                 Previous
               </Button>
             )}
             <Button
-              onClick={activateNode}
+              onClick={nextNode}
               value={state.selectedNode ? state.selectedNode.id : null}
               disabled={state.selectedNode ? false : true}
             >
