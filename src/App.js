@@ -33,7 +33,7 @@ const App = () => {
           <DecisionTree />
         </main>
         <Footer>
-          Created by
+          Created by{" "}
           <a
             href="https://rudycrespo.com"
             target="_blank"
