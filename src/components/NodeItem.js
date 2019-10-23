@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ContentWrapper from "./ContentWrapper";
 import ActionsWrapper from "./ActionsWrapper";
@@ -37,5 +38,16 @@ const NodeItem = props => {
     />
   );
 };
+
+NodeItem.propTypes = {
+  header: PropTypes.string.isRequired,
+  question: PropTypes.string.isRequired,
+  details: PropTypes.string,
+  isFinalDecision: PropTypes.bool.isRequired,
+  isComment: PropTypes.bool.isRequired,
+  choices: PropTypes.object.isRequired,
+  nextBtn: PropTypes.object.isRequired,
+  prevBtn: PropTypes.object.isRequired
+}
 
 export default NodeItem;
