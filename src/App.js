@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { modularScale, rgba } from 'polished'
+import { modularScale, rgba } from "polished";
 
-import GlobalStyles from './theme/globalStyles'
-import Iconography from './components/Iconography'
-import DecisionTree from './components/DecisionTree'
+import GlobalStyles from "./theme/globalStyles";
+import Iconography from "./components/Iconography";
+import DecisionTree from "./components/DecisionTree";
+import Footer from "./components/Footer";
 
 const theme = {
   primaryColor: "#373E40",
@@ -13,14 +14,14 @@ const theme = {
   lightBgColor: rgba("#488286", 0.1),
   grayColor: "#5A5C65",
   borderRadius: "5px",
-  grayBorderColor: rgba("#5A5C65", .5)
+  grayBorderColor: rgba("#5A5C65", 0.5)
 };
 
 const SiteWrapper = styled.div`
   max-width: ${modularScale(13)};
   margin: 0 auto;
   padding: 0 ${modularScale(0)};
-`
+`;
 
 const App = () => {
   return (
@@ -31,9 +32,12 @@ const App = () => {
           <GlobalStyles />
           <DecisionTree />
         </main>
+        <Footer>
+          Created by <a href="https://rudycrespo.com" target="_blank">Rudy Crespo</a>
+        </Footer>
       </SiteWrapper>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

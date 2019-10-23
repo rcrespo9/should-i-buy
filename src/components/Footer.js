@@ -2,9 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { modularScale } from "polished";
 
-const StyledFooter = styled.footer``
+const StyledFooter = styled.footer`
+  padding: ${modularScale(2)} 0;
+`
 
-const SmallCopy = styled.small``
+const SmallCopy = styled.small`
+  color: ${props => props.theme.grayColor};
+  font-size: ${modularScale(0, "0.875em")};
+
+  a {
+    color: inherit;
+    font-weight: 500;
+
+    &:hover {
+      color: ${props => props.theme.primaryColor};
+    }
+  }
+`
 
 const Footer = props => {
   const { children } = props
