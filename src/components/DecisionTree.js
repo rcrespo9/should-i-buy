@@ -6,6 +6,7 @@ import nodesData from "../nodes.json";
 
 import Intro from "./Intro";
 import NodeItem from "./NodeItem";
+import RadioBtn from "./RadioBtn";
 
 const Button = styled.button`
   appearance: none;
@@ -28,29 +29,6 @@ const Button = styled.button`
 
   &:disabled:hover {
     cursor: not-allowed;
-  }
-`;
-
-const Label = styled.label`
-  padding: ${modularScale(-2)} ${modularScale(-1)};
-  border: 2px solid ${props => props.theme.grayBorderColor};
-  border-radius: ${props => props.theme.borderRadius};
-  cursor: pointer;
-  color: ${props => props.theme.grayColor};
-  font-size: ${modularScale(2)};
-`;
-
-const RadioInput = styled.input.attrs(props => ({
-  type: "radio",
-  name: "nodeChoice",
-  id: props.id
-}))`
-  display: none;
-
-  &:checked + label {
-    border-color: ${props => props.theme.secondaryColor};
-    color: ${props => props.theme.secondaryColor};
-    background-color: ${props => props.theme.lightBgColor};
   }
 `;
 
@@ -157,32 +135,28 @@ const DecisionTree = () => {
       isComment={state.activeNode.isComment}
       choices={
         <>
-          <RadioInput
+          <RadioBtn 
+            label="Yes"
             id="yesChoice"
-            onChange={selectNodeHandler}
+            onChangeEvt={selectNodeHandler}
             value={state.activeNode.yesRoute}
-            checked={
+            isChecked={
               state.selectedNode
                 ? state.activeNode.yesRoute === state.selectedNode.id
                 : false
             }
           />
-          <Label htmlFor="yesChoice">
-            Yes
-          </Label>
-          <RadioInput
+          <RadioBtn 
+            label="No"
             id="noChoice"
-            onChange={selectNodeHandler}
+            onChangeEvt={selectNodeHandler}
             value={state.activeNode.noRoute}
-            checked={
+            isChecked={
               state.selectedNode
                 ? state.activeNode.noRoute === state.selectedNode.id
                 : false
             }
           />
-          <Label htmlFor="noChoice">
-            No
-          </Label>
         </>
       }
       prevBtn={
