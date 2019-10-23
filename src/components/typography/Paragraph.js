@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { modularScale, stripUnit } from 'polished'
+import { modularScale, stripUnit } from "polished";
 
 const StyledParagraph = styled.p`
   margin-top: ${modularScale(-2)};
@@ -8,10 +8,10 @@ const StyledParagraph = styled.p`
   line-height: ${stripUnit(modularScale(2, "0.875em"))};
 `;
 
-const Paragraph = (props) => {
-  const { children } = props
+const Paragraph = props => {
+  const { children } = props;
 
-  return <StyledParagraph>{children}</StyledParagraph>
-}
+  return <StyledParagraph>{children}</StyledParagraph>;
+};
 
-export default Paragraph
+export default Paragraph;

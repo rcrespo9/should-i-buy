@@ -1,6 +1,6 @@
-import React from "react"
-import styled from 'styled-components'
-import { modularScale } from 'polished'
+import React from "react";
+import styled from "styled-components";
+import { modularScale } from "polished";
 
 const StyledSmallHeader = styled.h1`
   color: ${props => props.theme.secondaryColor};
@@ -10,10 +10,10 @@ const StyledSmallHeader = styled.h1`
   text-transform: uppercase;
 `;
 
-const SmallHeader = (props) => {
-  const { tag, children } = props
+const SmallHeader = props => {
+  const { tag, children } = props;
 
-  return <StyledSmallHeader as={tag}>{children}</StyledSmallHeader>
-}
+  return <StyledSmallHeader as={tag}>{children}</StyledSmallHeader>;
+};
 
-export default SmallHeader
+export default SmallHeader;

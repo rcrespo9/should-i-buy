@@ -33,7 +33,14 @@ const App = () => {
           <DecisionTree />
         </main>
         <Footer>
-          Created by <a href="https://rudycrespo.com" target="_blank">Rudy Crespo</a>
+          Created by
+          <a
+            href="https://rudycrespo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Rudy Crespo
+          </a>
         </Footer>
       </SiteWrapper>
     </ThemeProvider>

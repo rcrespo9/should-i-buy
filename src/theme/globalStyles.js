@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import { stripUnit, normalize, modularScale } from 'polished'
+import { createGlobalStyle } from "styled-components";
+import { stripUnit, normalize, modularScale } from "polished";
 
 export default createGlobalStyle`
   ${normalize()}

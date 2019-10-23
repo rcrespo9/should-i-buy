@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { modularScale } from 'polished'
+import { modularScale } from "polished";
 
 const StyledActionsWrapper = styled.div`
   display: ${props => (props.fullWidth ? "grid" : "flex")};
@@ -13,10 +13,14 @@ const StyledActionsWrapper = styled.div`
   }
 `;
 
-const ActionsWrapper = (props) => {
-  const { children, fullWidth } = props
+const ActionsWrapper = props => {
+  const { children, fullWidth } = props;
 
-  return <StyledActionsWrapper fullWidth={fullWidth}>{children}</StyledActionsWrapper>
-}
+  return (
+    <StyledActionsWrapper fullWidth={fullWidth}>
+      {children}
+    </StyledActionsWrapper>
+  );
+};
 
-export default ActionsWrapper
+export default ActionsWrapper;

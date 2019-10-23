@@ -34,11 +34,11 @@ const RadioIcon = styled.svg`
 `;
 
 const UncheckedRadioIcon = styled(RadioIcon)`
-  fill: ${props => props.theme.grayColor}
+  fill: ${props => props.theme.grayColor};
 `;
 
 const CheckedRadioIcon = styled(RadioIcon)`
-  fill: ${props => props.theme.secondaryColor}
+  fill: ${props => props.theme.secondaryColor};
 `;
 
 const RadioBtn = props => {

@@ -1,17 +1,11 @@
-import React from "react"
-import styled from "styled-components"
-import { modularScale } from "polished"
+import React from "react";
+import styled from "styled-components";
 
-const StyledContentWrapper = styled.article`
-`
+const StyledContentWrapper = styled.article``;
 
-const ContentWrapper = (props) => {
-  const { content } = props
-  return (
-    <StyledContentWrapper>
-      { content }
-    </StyledContentWrapper>
-  )
-}
+const ContentWrapper = props => {
+  const { content } = props;
+  return <StyledContentWrapper>{content}</StyledContentWrapper>;
+};
 
 export default ContentWrapper;

@@ -22,9 +22,7 @@ const NodeItem = props => {
     <ContentWrapper
       content={
         <>
-          <SmallHeader>
-            {header}
-          </SmallHeader>
+          <SmallHeader>{header}</SmallHeader>
           <LargeHeader>{question}</LargeHeader>
           {details !== null && <Paragraph>{details}</Paragraph>}
           {!isFinalDecision && !isComment && (

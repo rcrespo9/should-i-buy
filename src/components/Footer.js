@@ -4,7 +4,7 @@ import { modularScale } from "polished";
 
 const StyledFooter = styled.footer`
   padding: ${modularScale(2)} 0;
-`
+`;
 
 const SmallCopy = styled.small`
   color: ${props => props.theme.grayColor};
@@ -18,16 +18,16 @@ const SmallCopy = styled.small`
       color: ${props => props.theme.primaryColor};
     }
   }
-`
+`;
 
 const Footer = props => {
-  const { children } = props
+  const { children } = props;
 
   return (
     <StyledFooter>
       <SmallCopy>{children}</SmallCopy>
     </StyledFooter>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

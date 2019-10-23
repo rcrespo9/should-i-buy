@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const SVGContainer = styled.svg.attrs(props => ({
   "aria-hidden": "true",
@@ -27,6 +27,6 @@ const Iconography = () => {
       </defs>
     </SVGContainer>
   );
-}
+};
 
-export default Iconography
+export default Iconography;

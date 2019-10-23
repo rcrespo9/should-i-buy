@@ -113,7 +113,9 @@ const DecisionTree = () => {
     />
   ) : (
     <NodeItem
-      header={state.activeNode.isFinalDecision ? "The verdict" : "Should I Buy This?"}
+      header={
+        state.activeNode.isFinalDecision ? "The verdict" : "Should I Buy This?"
+      }
       question={state.activeNode.text}
       details={state.activeNode.details}
       isFinalDecision={state.activeNode.isFinalDecision}
