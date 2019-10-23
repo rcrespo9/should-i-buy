@@ -5,7 +5,7 @@ import nodesData from "../nodes.json";
 import Intro from "./Intro";
 import NodeItem from "./NodeItem";
 import RadioBtn from "./RadioBtn";
-import Button from "./Button"
+import Button from "./Button";
 
 const initialState = {
   activeNode: null,
@@ -102,10 +102,19 @@ const DecisionTree = () => {
   };
 
   return state.activeNode === null ? (
-    <Intro actions={<Button onClickEvt={startSurvey}>Get Started</Button>} />
+    <Intro
+      header="Should I Buy This?"
+      blurb="Decision support tools are an effective way to help prevent
+      overspending. Whenever you're tempted to pull out your wallet, go
+      through this questionnaire first. By adding this step to your
+      purchasing process, you can retrain yourself to think about every
+      purchase before you make it."
+      actions={<Button onClickEvt={startSurvey}>Get Started</Button>}
+    />
   ) : (
     <NodeItem
-      text={state.activeNode.text}
+      header={state.activeNode.isFinalDecision ? "The verdict" : "Should I Buy This?"}
+      question={state.activeNode.text}
       details={state.activeNode.details}
       isFinalDecision={state.activeNode.isFinalDecision}
       isComment={state.activeNode.isComment}
@@ -136,7 +145,9 @@ const DecisionTree = () => {
         </>
       }
       prevBtn={
-        <Button onClickEvt={state.prevNodes.length > 1 ? prevNode : resetSurvey}>
+        <Button
+          onClickEvt={state.prevNodes.length > 1 ? prevNode : resetSurvey}
+        >
           Previous
         </Button>
       }

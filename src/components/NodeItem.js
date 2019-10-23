@@ -8,7 +8,8 @@ import Paragraph from "./typography/Paragraph";
 
 const NodeItem = props => {
   const {
-    text,
+    header,
+    question,
     details,
     choices,
     prevBtn,
@@ -22,9 +23,9 @@ const NodeItem = props => {
       content={
         <>
           <SmallHeader>
-            {isFinalDecision ? "The verdict" : "Should I Buy This?"}
+            {header}
           </SmallHeader>
-          <LargeHeader>{text}</LargeHeader>
+          <LargeHeader>{question}</LargeHeader>
           {details !== null && <Paragraph>{details}</Paragraph>}
           {!isFinalDecision && !isComment && (
             <ActionsWrapper fullWidth={true}>{choices}</ActionsWrapper>
