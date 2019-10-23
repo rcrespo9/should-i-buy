@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { modularScale, stripUnit } from "polished";
+import PropTypes from "prop-types";
 
 const StyledParagraph = styled.p`
   margin-top: ${modularScale(-2)};
@@ -13,5 +14,9 @@ const Paragraph = props => {
 
   return <StyledParagraph>{children}</StyledParagraph>;
 };
+
+Paragraph.propTypes = {
+  children: PropTypes.string.isRequired
+}
 
 export default Paragraph;

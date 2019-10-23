@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { modularScale } from "polished";
+import PropTypes from "prop-types";
 
 const StyledSmallHeader = styled.h1`
   color: ${props => props.theme.secondaryColor};
@@ -15,5 +16,10 @@ const SmallHeader = props => {
 
   return <StyledSmallHeader as={tag}>{children}</StyledSmallHeader>;
 };
+
+SmallHeader.propTypes = {
+  children: PropTypes.string.isRequired,
+  tag: PropTypes.string
+}
 
 export default SmallHeader;
