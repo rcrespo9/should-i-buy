@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { modularScale } from "polished";
+import PropTypes from "prop-types";
 
 const StyledFooter = styled.footer`
   padding: ${modularScale(2)} 0;
@@ -29,5 +30,9 @@ const Footer = props => {
     </StyledFooter>
   );
 };
+
+Footer.propTypes = {
+  children: PropTypes.any.isRequired
+}
 
 export default Footer;
