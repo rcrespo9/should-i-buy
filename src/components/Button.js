@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { modularScale } from "polished";
+import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
   appearance: none;
@@ -35,5 +36,11 @@ const Button = props => {
     </StyledButton>
   );
 };
+
+Button.propTypes = {
+  children: PropTypes.string.isRequired,
+  onClickEvt: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool
+}
 
 export default Button;
