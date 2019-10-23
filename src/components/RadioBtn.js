@@ -25,6 +25,22 @@ const RadioInput = styled.input.attrs(props => ({
   }
 `;
 
+const RadioIcon = styled.svg`
+  display: inline-block;
+  width: ${modularScale(1)};
+  height: ${modularScale(1)};
+  vertical-align: text-top;
+  margin-right: ${modularScale(-5)};
+`;
+
+const UncheckedRadioIcon = styled(RadioIcon)`
+  fill: ${props => props.theme.grayColor}
+`;
+
+const CheckedRadioIcon = styled(RadioIcon)`
+  fill: ${props => props.theme.secondaryColor}
+`;
+
 const RadioBtn = props => {
   const { onChangeEvt, value, isChecked, label, id } = props;
 
@@ -36,7 +52,18 @@ const RadioBtn = props => {
         value={value}
         checked={isChecked}
       />
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id}>
+        {isChecked ? (
+          <CheckedRadioIcon>
+            <use xlinkHref="#icon-radio_button_checked"></use>
+          </CheckedRadioIcon>
+        ) : (
+          <UncheckedRadioIcon>
+            <use xlinkHref="#icon-radio_button_unchecked"></use>
+          </UncheckedRadioIcon>
+        )}
+        {label}
+      </Label>
     </>
   );
 };
