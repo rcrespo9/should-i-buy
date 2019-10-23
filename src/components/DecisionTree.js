@@ -1,38 +1,11 @@
-// TODO: decouple value from button, set to state instead
-
 import React, { useState, useReducer } from "react";
-import styled from "styled-components";
-import { modularScale, rgba } from "polished";
 
 import nodesData from "../nodes.json";
 
 import Intro from "./Intro";
 import NodeItem from "./NodeItem";
 import RadioBtn from "./RadioBtn";
-
-const Button = styled.button`
-  appearance: none;
-  min-width: ${modularScale(8)};
-  padding: ${modularScale(0)} ${modularScale(2)};
-  border: none;
-  border-radius: ${props => props.theme.borderRadius};
-  color: #fff;
-  background-color: ${props => props.theme.secondaryColor};
-  font-size: ${modularScale(0)};
-  font-weight: 500;
-
-  &:disabled {
-    opacity: 0.85;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:disabled:hover {
-    cursor: not-allowed;
-  }
-`;
+import Button from "./Button"
 
 const initialState = {
   activeNode: null,
@@ -129,7 +102,7 @@ const DecisionTree = () => {
   };
 
   return state.activeNode === null ? (
-    <Intro actions={<Button onClick={startSurvey}>Get Started</Button>} />
+    <Intro actions={<Button onClickEvt={startSurvey}>Get Started</Button>} />
   ) : (
     <NodeItem
       text={state.activeNode.text}
@@ -163,17 +136,17 @@ const DecisionTree = () => {
         </>
       }
       prevBtn={
-        <Button onClick={state.prevNodes.length > 1 ? prevNode : resetSurvey}>
+        <Button onClickEvt={state.prevNodes.length > 1 ? prevNode : resetSurvey}>
           Previous
         </Button>
       }
       nextBtn={
         state.activeNode.isFinalDecision ? (
-          <Button onClick={resetSurvey}>Reset Survey</Button>
+          <Button onClickEvt={resetSurvey}>Reset Survey</Button>
         ) : (
           <Button
-            onClick={nextNode}
-            disabled={
+            onClickEvt={nextNode}
+            isDisabled={
               state.activeNode.isComment
                 ? false
                 : state.selectedNode
