@@ -1,3 +1,5 @@
+// TODO: decouple value from button, set to state instead
+
 import React, { useState, useReducer } from "react";
 import styled from "styled-components";
 import { modularScale, rgba } from "polished";
@@ -20,7 +22,7 @@ const Button = styled.button`
   font-weight: 500;
 
   &:disabled {
-    opacity: .85;
+    opacity: 0.85;
   }
 
   &:hover {
@@ -78,12 +80,12 @@ const DecisionTree = () => {
     });
   };
 
-  const nextNode = evt => {
-    const foundNode = findNode(evt.currentTarget.value);
-
+  const nextNode = () => {
     dispatch({
       type: "ACTIVATE_NODE",
-      payload: foundNode
+      payload: state.activeNode.isComment
+        ? findNode(state.activeNode.commentRoute)
+        : state.selectedNode
     });
 
     if (state.activeNode) {
@@ -113,6 +115,13 @@ const DecisionTree = () => {
     });
   };
 
+  const startSurvey = () => {
+    dispatch({
+      type: "ACTIVATE_NODE",
+      payload: findNode(1)
+    });
+  };
+
   const resetSurvey = () => {
     dispatch({
       type: "RESET"
@@ -120,13 +129,7 @@ const DecisionTree = () => {
   };
 
   return state.activeNode === null ? (
-    <Intro
-      actions={
-        <Button onClick={nextNode} value={1}>
-          Get Started
-        </Button>
-      }
-    />
+    <Intro actions={<Button onClick={startSurvey}>Get Started</Button>} />
   ) : (
     <NodeItem
       text={state.activeNode.text}
@@ -135,7 +138,7 @@ const DecisionTree = () => {
       isComment={state.activeNode.isComment}
       choices={
         <>
-          <RadioBtn 
+          <RadioBtn
             label="Yes"
             id="yesChoice"
             onChangeEvt={selectNodeHandler}
@@ -146,7 +149,7 @@ const DecisionTree = () => {
                 : false
             }
           />
-          <RadioBtn 
+          <RadioBtn
             label="No"
             id="noChoice"
             onChangeEvt={selectNodeHandler}
@@ -170,13 +173,6 @@ const DecisionTree = () => {
         ) : (
           <Button
             onClick={nextNode}
-            value={
-              state.activeNode.isComment
-                ? state.activeNode.commentRoute
-                : state.selectedNode
-                ? state.selectedNode.id
-                : null
-            }
             disabled={
               state.activeNode.isComment
                 ? false
