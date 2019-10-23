@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { modularScale } from "polished";
+import PropTypes from "prop-types";
 
 const StyledActionsWrapper = styled.div`
   display: ${props => (props.fullWidth ? "grid" : "flex")};
@@ -22,5 +23,10 @@ const ActionsWrapper = props => {
     </StyledActionsWrapper>
   );
 };
+
+ActionsWrapper.propTypes = {
+  children: PropTypes.any.isRequired,
+  fullWidth: PropTypes.bool
+}
 
 export default ActionsWrapper;
