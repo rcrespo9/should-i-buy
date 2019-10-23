@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ContentWrapper from "./ContentWrapper";
 import ActionsWrapper from "./ActionsWrapper";
@@ -20,5 +21,11 @@ const Intro = props => {
     />
   );
 };
+
+Intro.propTypes = {
+  header: PropTypes.string.isRequired,
+  blurb: PropTypes.string.isRequired,
+  actions: PropTypes.object.isRequired
+}
 
 export default Intro;
