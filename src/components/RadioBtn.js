@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { modularScale } from "polished";
+import PropTypes from "prop-types";
 
 const Label = styled.label`
   padding: ${modularScale(-2)} ${modularScale(-1)};
@@ -67,5 +68,13 @@ const RadioBtn = props => {
     </>
   );
 };
+
+RadioBtn.propTypes = {
+  id: PropTypes.string.isRequired,
+  onChangeEvt: PropTypes.func.isRequired,
+  isChecked: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired
+}
 
 export default RadioBtn;
