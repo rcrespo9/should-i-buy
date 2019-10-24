@@ -3,6 +3,16 @@ import { stripUnit, normalize, modularScale } from "polished";
 
 export default createGlobalStyle`
   ${normalize()}
+
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
   
   body {
     color: ${props => props.theme.primaryColor};

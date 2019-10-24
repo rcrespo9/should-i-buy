@@ -27,7 +27,6 @@ const SiteWrapper = styled.div`
 `;
 
 const MainWrapper = styled.main`
-  display: grid;
   align-self: center;
 `
 
