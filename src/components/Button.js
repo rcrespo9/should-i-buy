@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const StyledButton = styled.button`
   appearance: none;
   max-width: ${modularScale(8)};
-  padding: ${modularScale(0)} ${modularScale(2)};
+  padding: ${modularScale(1, "0.875em")} ${modularScale(2)};
   border: none;
   border-radius: ${props => props.theme.borderRadius};
   color: #fff;
