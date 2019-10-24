@@ -27,6 +27,7 @@ const SiteWrapper = styled.div`
 `;
 
 const MainWrapper = styled.main`
+  min-width: 0;
   align-self: center;
 `
 

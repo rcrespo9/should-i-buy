@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { modularScale } from "polished";
+import { modularScale, stripUnit } from "polished";
 import PropTypes from "prop-types";
 
 const StyledLargeHeader = styled.h2`
   font-weight: 700;
   font-size: ${modularScale(3)};
+  line-height: ${stripUnit(modularScale(1, "0.875em"))};
 `;
 
 const LargeHeader = props => {

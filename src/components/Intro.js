@@ -15,7 +15,7 @@ const Intro = props => {
         <>
           <LargeHeader tag="h1">{header}</LargeHeader>
           <Paragraph>{blurb}</Paragraph>
-          <ActionsWrapper>{actions}</ActionsWrapper>
+          <ActionsWrapper fullWidth>{actions}</ActionsWrapper>
         </>
       }
     />
