@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
 
 const SmallCopy = styled.small`
   color: ${props => props.theme.grayColor};
-  font-size: ${modularScale(0, "0.875em")};
+  font-size: ${modularScale(0)};
 
   a {
     color: inherit;
