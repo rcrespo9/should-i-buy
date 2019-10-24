@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
   appearance: none;
-  max-width: ${modularScale(8)};
   padding: ${modularScale(1, "0.875em")} ${modularScale(2)};
   border: none;
   border-radius: ${props => props.theme.borderRadius};
@@ -24,6 +23,10 @@ const StyledButton = styled.button`
 
   &:disabled:hover {
     cursor: not-allowed;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.xs}) {
+    max-width: ${modularScale(8)};
   }
 `;
 

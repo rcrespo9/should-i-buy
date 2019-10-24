@@ -154,7 +154,7 @@ const DecisionTree = () => {
       }
       nextBtn={
         state.activeNode.isFinalDecision ? (
-          <Button onClickEvt={resetSurvey}>Reset Survey</Button>
+          <Button onClickEvt={resetSurvey}>Reset</Button>
         ) : (
           <Button
             onClickEvt={nextNode}

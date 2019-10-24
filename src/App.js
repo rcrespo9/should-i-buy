@@ -16,15 +16,16 @@ const theme = {
   borderRadius: "5px",
   grayBorderColor: rgba("#5A5C65", 0.5),
   breakpoints: {
-    sm: `${em("640px")}`,
-    lg: `${em("1440px")}`
+    xs: "400px",
+    sm: "640px",
+    lg: "2560px"
   }
 };
 
 const SiteWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
-  row-gap: ${modularScale(3)};
+  row-gap: ${modularScale(4)};
   min-height: 100vh;
   max-width: ${modularScale(13)};
   margin: 0 auto;
