@@ -20,10 +20,11 @@ const theme = {
 const SiteWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
+  row-gap: ${modularScale(3)};
   min-height: 100vh;
   max-width: ${modularScale(13)};
   margin: 0 auto;
-  padding: 0 ${modularScale(0)};
+  padding: ${modularScale(3)} ${modularScale(0)} ${modularScale(2)};
 `;
 
 const MainWrapper = styled.main`
