@@ -45,7 +45,10 @@ NodeItem.propTypes = {
   details: PropTypes.string,
   isFinalDecision: PropTypes.bool.isRequired,
   isComment: PropTypes.bool.isRequired,
-  choices: PropTypes.object.isRequired,
+  choices: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool
+  ]).isRequired,
   nextBtn: PropTypes.object.isRequired,
   prevBtn: PropTypes.object.isRequired
 }

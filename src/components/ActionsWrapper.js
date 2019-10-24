@@ -4,7 +4,8 @@ import { modularScale } from "polished";
 import PropTypes from "prop-types";
 
 const StyledActionsWrapper = styled.div`
-  display: ${props => (props.fullWidth ? "grid" : "flex")};
+  display: grid;
+  grid-template-columns: ${props => (props.fullWidth ? null : `repeat(2, ${modularScale(8)})` )};
   row-gap: ${props => (props.fullWidth ? modularScale(2) : null)};
   justify-content: ${props => (props.fullWidth ? null : "space-between")};
   margin-top: ${modularScale(3)};

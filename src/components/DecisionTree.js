@@ -121,28 +121,29 @@ const DecisionTree = () => {
       isFinalDecision={state.activeNode.isFinalDecision}
       isComment={state.activeNode.isComment}
       choices={
-        <>
-          <RadioBtn
-            label="Yes"
-            onChangeEvt={selectNodeHandler}
-            value={state.activeNode.yesRoute}
-            isChecked={
-              state.selectedNode
-                ? state.activeNode.yesRoute === state.selectedNode.id
-                : false
-            }
-          />
-          <RadioBtn
-            label="No"
-            onChangeEvt={selectNodeHandler}
-            value={state.activeNode.noRoute}
-            isChecked={
-              state.selectedNode
-                ? state.activeNode.noRoute === state.selectedNode.id
-                : false
-            }
-          />
-        </>
+        !state.activeNode.isFinalDecision && !state.activeNode.isComment &&
+          <>
+            <RadioBtn
+              label="Yes"
+              onChangeEvt={selectNodeHandler}
+              value={state.activeNode.yesRoute}
+              isChecked={
+                state.selectedNode
+                  ? state.activeNode.yesRoute === state.selectedNode.id
+                  : false
+              }
+            />
+            <RadioBtn
+              label="No"
+              onChangeEvt={selectNodeHandler}
+              value={state.activeNode.noRoute}
+              isChecked={
+                state.selectedNode
+                  ? state.activeNode.noRoute === state.selectedNode.id
+                  : false
+              }
+            />
+          </>
       }
       prevBtn={
         <Button
