@@ -11,10 +11,10 @@ const theme = {
   primaryColor: "#373E40",
   secondaryColor: "#305252",
   tertiaryColor: "#488286",
-  lightBgColor: rgba("#488286", 0.1),
+  lightBgColor: rgba("#488286", 0.1), // try function that returns this, then refer to appropriate color
   grayColor: "#5A5C65",
   borderRadius: "5px",
-  grayBorderColor: rgba("#5A5C65", 0.5),
+  grayBorderColor: rgba("#5A5C65", 0.5), // try function that returns this, then refer to appropriate color
   breakpoints: {
     xs: "400px",
     sm: "640px",

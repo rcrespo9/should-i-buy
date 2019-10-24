@@ -8,14 +8,14 @@ export default createGlobalStyle`
     box-sizing: border-box;
     line-height: ${stripUnit(modularScale(1))};
 
-    ${fluidRange(
+    ${props => fluidRange(
       {
         prop: "font-size",
         fromSize: "16px",
         toSize: "24px"
       },
-      "640px",
-      "2560px"
+      props.theme.breakpoints.sm,
+      props.theme.breakpoints.lg
     )}
   }
 
