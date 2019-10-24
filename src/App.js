@@ -18,20 +18,28 @@ const theme = {
 };
 
 const SiteWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
   max-width: ${modularScale(13)};
   margin: 0 auto;
   padding: 0 ${modularScale(0)};
 `;
+
+const MainWrapper = styled.main`
+  display: grid;
+  align-self: center;
+`
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Iconography />
       <SiteWrapper>
-        <main>
+        <MainWrapper>
           <GlobalStyles />
           <DecisionTree />
-        </main>
+        </MainWrapper>
         <Footer>
           Created by{" "}
           <a

@@ -4,6 +4,8 @@ import { modularScale } from "polished";
 import PropTypes from "prop-types";
 
 const StyledFooter = styled.footer`
+  grid-row-start: 2;
+  grid-row-end: 3;
   padding: ${modularScale(2)} 0;
 `;
 
