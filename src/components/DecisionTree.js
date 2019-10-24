@@ -124,7 +124,6 @@ const DecisionTree = () => {
         <>
           <RadioBtn
             label="Yes"
-            id="yesChoice"
             onChangeEvt={selectNodeHandler}
             value={state.activeNode.yesRoute}
             isChecked={
@@ -135,7 +134,6 @@ const DecisionTree = () => {
           />
           <RadioBtn
             label="No"
-            id="noChoice"
             onChangeEvt={selectNodeHandler}
             value={state.activeNode.noRoute}
             isChecked={

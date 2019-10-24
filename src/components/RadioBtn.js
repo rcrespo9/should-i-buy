@@ -42,11 +42,11 @@ const CheckedRadioIcon = styled(RadioIcon)`
 `;
 
 const RadioBtn = props => {
-  const { onChangeEvt, value, isChecked, label, id } = props;
+  const { onChangeEvt, value, isChecked, label } = props;
 
   return (
     <>
-      <Label isChecked={isChecked} htmlFor={id}>
+      <Label isChecked={isChecked} tabIndex="0">
         {isChecked ? (
           <CheckedRadioIcon>
             <use xlinkHref="#icon-radio_button_checked"></use>
@@ -58,7 +58,6 @@ const RadioBtn = props => {
         )}
         {label}
         <RadioInput
-          id={id}
           onChange={onChangeEvt}
           value={value}
           checked={isChecked}
