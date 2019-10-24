@@ -68,7 +68,6 @@ const RadioBtn = props => {
 };
 
 RadioBtn.propTypes = {
-  id: PropTypes.string.isRequired,
   onChangeEvt: PropTypes.func.isRequired,
   isChecked: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
