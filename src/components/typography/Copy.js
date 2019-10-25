@@ -3,20 +3,24 @@ import styled from "styled-components";
 import { modularScale, stripUnit } from "polished";
 import PropTypes from "prop-types";
 
-const StyledParagraph = styled.p`
+const StyledCopy = styled.div`
   margin-top: ${modularScale(-2)};
   font-size: ${modularScale(1)};
   line-height: ${stripUnit(modularScale(2, "0.875em"))};
+
+  p + p {
+    margin-top: ${modularScale(-1)};
+  }
 `;
 
-const Paragraph = props => {
+const Copy = props => {
   const { children } = props;
 
-  return <StyledParagraph>{children}</StyledParagraph>;
+  return <StyledCopy>{children}</StyledCopy>;
 };
 
-Paragraph.propTypes = {
-  children: PropTypes.string.isRequired
+Copy.propTypes = {
+  children: PropTypes.any.isRequired
 }
 
-export default Paragraph;
+export default Copy;

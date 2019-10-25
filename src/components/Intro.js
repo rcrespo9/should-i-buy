@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ContentWrapper from "./ContentWrapper";
 import ActionsWrapper from "./ActionsWrapper";
 import LargeHeader from "./typography/LargeHeader";
-import Paragraph from "./typography/Paragraph";
+import Copy from "./typography/Copy";
 
 const Intro = props => {
   const { header, blurb, actions } = props;
@@ -14,7 +14,7 @@ const Intro = props => {
       content={
         <>
           <LargeHeader tag="h1">{header}</LargeHeader>
-          <Paragraph>{blurb}</Paragraph>
+          <Copy>{blurb}</Copy>
           <ActionsWrapper fullWidth>{actions}</ActionsWrapper>
         </>
       }
@@ -24,7 +24,7 @@ const Intro = props => {
 
 Intro.propTypes = {
   header: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  blurb: PropTypes.any.isRequired,
   actions: PropTypes.object.isRequired
 }
 

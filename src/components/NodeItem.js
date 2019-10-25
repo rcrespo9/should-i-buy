@@ -5,7 +5,7 @@ import ContentWrapper from "./ContentWrapper";
 import ActionsWrapper from "./ActionsWrapper";
 import SmallHeader from "./typography/SmallHeader";
 import LargeHeader from "./typography/LargeHeader";
-import Paragraph from "./typography/Paragraph";
+import Copy from "./typography/Copy";
 
 const NodeItem = props => {
   const {
@@ -25,7 +25,11 @@ const NodeItem = props => {
         <>
           <SmallHeader>{header}</SmallHeader>
           <LargeHeader>{question}</LargeHeader>
-          {details !== null && <Paragraph>{details}</Paragraph>}
+          {details !== null && (
+            <Copy>
+              <p>{details}</p>
+            </Copy>
+          )}
           {!isFinalDecision && !isComment && (
             <ActionsWrapper fullWidth={true}>{choices}</ActionsWrapper>
           )}

@@ -104,11 +104,28 @@ const DecisionTree = () => {
   return state.activeNode === null ? (
     <Intro
       header="Should I Buy This?"
-      blurb="Decision support tools are an effective way to help prevent
-      overspending. Whenever you're tempted to pull out your wallet, go
-      through this questionnaire first. By adding this step to your
-      purchasing process, you can retrain yourself to think about every
-      purchase before you make it."
+      blurb={
+        <>
+          <p>
+            Decision support tools are an effective way to help prevent
+            overspending. Whenever you're tempted to pull out your wallet, go
+            through this questionnaire first. By adding this step to your
+            purchasing process, you can retrain yourself to think about every
+            purchase before you make it.
+          </p>
+          <p>
+            Inspired by{" "}
+            <a
+              href="https://smartaboutmoney.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              smartaboutmoney.org
+            </a>
+          </p>
+        </>
+      }
       actions={<Button onClickEvt={startSurvey}>Get Started</Button>}
     />
   ) : (
@@ -121,7 +138,8 @@ const DecisionTree = () => {
       isFinalDecision={state.activeNode.isFinalDecision}
       isComment={state.activeNode.isComment}
       choices={
-        !state.activeNode.isFinalDecision && !state.activeNode.isComment &&
+        !state.activeNode.isFinalDecision &&
+        !state.activeNode.isComment && (
           <>
             <RadioBtn
               label="Yes"
@@ -144,6 +162,7 @@ const DecisionTree = () => {
               }
             />
           </>
+        )
       }
       prevBtn={
         <Button

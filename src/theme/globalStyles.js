@@ -44,7 +44,7 @@ export default createGlobalStyle`
     transition: color ${props => props.theme.easingTiming};
 
     &:hover {
-      color: ${props => darken(.01, props.theme.primaryColor)};
+      color: ${props => darken(1, props.theme.primaryColor)};
     }
   }
 `;
