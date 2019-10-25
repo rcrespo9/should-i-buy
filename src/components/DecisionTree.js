@@ -73,8 +73,6 @@ const DecisionTree = () => {
   const [state, dispatch] = useReducer(decisionTreeReducer, initialState);
   const [nodes] = useState(nodesData);
 
-  useEffect(() => {});
-
   const findNode = id => {
     const nodeId = parseInt(id, 10);
     const foundNode = nodes.find(node => node.id === nodeId);
@@ -89,6 +87,10 @@ const DecisionTree = () => {
       type: "SELECT_NODE",
       payload: foundNode
     });
+  };
+
+  const delayDispatch = (dispatchObj) => {
+    setTimeout(() => dispatch(dispatchObj), duration);
   };
 
   const toggleNodeAnim = () => {
@@ -113,14 +115,12 @@ const DecisionTree = () => {
   const nextNode = () => {
     toggleNodeAnim();
 
-    setTimeout(() => {
-      dispatch({
-        type: "ACTIVATE_NODE",
-        payload: state.activeNode.isComment
-          ? findNode(state.activeNode.commentRoute)
-          : state.selectedNode
-      });
-    }, duration);
+    delayDispatch({
+      type: "ACTIVATE_NODE",
+      payload: state.activeNode.isComment
+        ? findNode(state.activeNode.commentRoute)
+        : state.selectedNode
+    });
 
     if (state.activeNode) {
       dispatch({
@@ -135,12 +135,10 @@ const DecisionTree = () => {
 
     toggleNodeAnim();
 
-    setTimeout(() => {
-      dispatch({
-        type: "ACTIVATE_NODE",
-        payload: findNode(prevNodeItem)
-      });
-    }, duration);
+    delayDispatch({
+      type: "ACTIVATE_NODE",
+      payload: findNode(prevNodeItem)
+    });
 
     dispatch({
       type: "SELECT_NODE",
@@ -154,22 +152,18 @@ const DecisionTree = () => {
   };
 
   const startSurvey = () => {
-    setTimeout(() => {
-      dispatch({
-        type: "ACTIVATE_NODE",
-        payload: findNode(1)
-      });
-    }, duration);
+    delayDispatch({
+      type: "ACTIVATE_NODE",
+      payload: findNode(1)
+    });
 
     toggleIntroAndNodeAnim();
   };
 
   const resetSurvey = () => {
-    setTimeout(() => {
-      dispatch({
-        type: "RESET"
-      });
-    }, duration);
+    delayDispatch({
+      type: "RESET"
+    });
 
     toggleIntroAndNodeAnim();
   };
