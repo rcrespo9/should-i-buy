@@ -116,7 +116,7 @@ const DecisionTree = () => {
           <p>
             Inspired by{" "}
             <a
-              href="https://smartaboutmoney.org"
+              href="https://www.smartaboutmoney.org/Topics/Spending-and-Borrowing/Control-Spending/Should-I-Buy-This"
               target="_blank"
               rel="noopener noreferrer"
             >
