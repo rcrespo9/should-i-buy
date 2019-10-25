@@ -19,7 +19,8 @@ const theme = {
     xs: "400px",
     sm: "640px",
     lg: "2560px"
-  }
+  },
+  easingTiming: ".25s ease-in-out"
 };
 
 const SiteWrapper = styled.div`

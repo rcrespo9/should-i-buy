@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { modularScale } from "polished";
+import { modularScale, lighten, darken } from "polished";
 import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
@@ -12,13 +12,19 @@ const StyledButton = styled.button`
   background-color: ${props => props.theme.secondaryColor};
   font-size: ${modularScale(0)};
   font-weight: 500;
+  transition: all ${props => props.theme.easingTiming};
+
+  &:hover:enabled {
+    cursor: pointer;
+    background-color: ${props => lighten(0.03, props.theme.secondaryColor)};
+  }
+
+  &:focus:enabled {
+    background-color: ${props => darken(0.03, props.theme.secondaryColor)};
+  }
 
   &:disabled {
     opacity: 0.85;
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 
   &:disabled:hover {

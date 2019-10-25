@@ -3,6 +3,23 @@ import styled from "styled-components";
 import { modularScale, hideVisually } from "polished";
 import PropTypes from "prop-types";
 
+const RadioIcon = styled.svg`
+  display: inline-block;
+  width: ${modularScale(1)};
+  height: ${modularScale(1)};
+  vertical-align: text-top;
+  margin-right: ${modularScale(-5)};
+  transition: fill ${props => props.theme.easingTiming};
+`;
+
+const UncheckedRadioIcon = styled(RadioIcon)`
+  fill: ${props => props.theme.grayColor};
+`;
+
+const CheckedRadioIcon = styled(RadioIcon)`
+  fill: ${props => props.theme.secondaryColor};
+`;
+
 const Label = styled.label`
   padding: ${modularScale(-2)} ${modularScale(-1)};
   border: 2px solid ${props => props.theme.grayBorderColor};
@@ -15,6 +32,17 @@ const Label = styled.label`
   color: ${props =>
     props.isChecked ? props.theme.secondaryColor : props.theme.grayColor};
   font-size: ${modularScale(2)};
+  transition: all ${props => props.theme.easingTiming};
+
+  &:hover {
+    border-color: ${props => props.theme.secondaryColor};
+    background-color: ${props => props.theme.lightBgColor};
+    color: ${props => props.theme.secondaryColor};
+
+    ${UncheckedRadioIcon} {
+      fill: ${props => props.theme.secondaryColor};
+    }
+  }
 `;
 
 const RadioInput = styled.input.attrs(props => ({
@@ -25,28 +53,12 @@ const RadioInput = styled.input.attrs(props => ({
   ${hideVisually()};
 `;
 
-const RadioIcon = styled.svg`
-  display: inline-block;
-  width: ${modularScale(1)};
-  height: ${modularScale(1)};
-  vertical-align: text-top;
-  margin-right: ${modularScale(-5)};
-`;
-
-const UncheckedRadioIcon = styled(RadioIcon)`
-  fill: ${props => props.theme.grayColor};
-`;
-
-const CheckedRadioIcon = styled(RadioIcon)`
-  fill: ${props => props.theme.secondaryColor};
-`;
-
 const RadioBtn = props => {
   const { onChangeEvt, value, isChecked, label } = props;
 
   return (
     <>
-      <Label isChecked={isChecked} tabIndex="0">
+      <Label isChecked={isChecked}>
         {isChecked ? (
           <CheckedRadioIcon>
             <use xlinkHref="#icon-radio_button_checked"></use>

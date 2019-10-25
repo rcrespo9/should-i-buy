@@ -15,6 +15,7 @@ const SmallCopy = styled.small`
   a {
     color: inherit;
     font-weight: 500;
+    transition: color ${props => props.theme.easingTiming};
 
     &:hover {
       color: ${props => props.theme.primaryColor};
