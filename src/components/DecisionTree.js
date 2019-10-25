@@ -197,7 +197,7 @@ const DecisionTree = () => {
                   >
                     {" "}
                     smartaboutmoney.org
-                  </a>
+                  </a>.
                 </p>
               </>
             }
