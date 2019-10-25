@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { stripUnit, normalize, modularScale, fluidRange } from "polished";
+import { stripUnit, normalize, modularScale, fluidRange, darken } from "polished";
 
 export default createGlobalStyle`
   ${normalize()}
@@ -36,5 +36,15 @@ export default createGlobalStyle`
   h2,
   p {
     margin: 0;
+  }
+
+  a {
+    color: inherit;
+    font-weight: 500;
+    transition: color ${props => props.theme.easingTiming};
+
+    &:hover {
+      color: ${props => darken(.01, props.theme.primaryColor)};
+    }
   }
 `;

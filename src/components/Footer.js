@@ -11,16 +11,6 @@ const StyledFooter = styled.footer`
 const SmallCopy = styled.small`
   color: ${props => props.theme.grayColor};
   font-size: ${modularScale(0)};
-
-  a {
-    color: inherit;
-    font-weight: 500;
-    transition: color ${props => props.theme.easingTiming};
-
-    &:hover {
-      color: ${props => props.theme.primaryColor};
-    }
-  }
 `;
 
 const Footer = props => {
