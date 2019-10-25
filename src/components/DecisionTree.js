@@ -1,4 +1,5 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
+import { Transition } from "react-transition-group";
 
 import nodesData from "../nodes.json";
 
@@ -7,10 +8,35 @@ import NodeItem from "./NodeItem";
 import RadioBtn from "./RadioBtn";
 import Button from "./Button";
 
+const duration = 250;
+
+const defaultStyle = {
+  transition: `all ${duration}ms ease-in-out`
+};
+
+const defaultIntroStyle = {
+  ...defaultStyle,
+  opacity: 1
+};
+
+const defaultNodeItemStyle = {
+  ...defaultStyle,
+  opacity: 0
+};
+
+const transitionStyles = {
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: { opacity: 0 },
+  exited: { opacity: 0 }
+};
+
 const initialState = {
   activeNode: null,
   selectedNode: null,
-  prevNodes: [0]
+  prevNodes: [0],
+  inIntro: true,
+  inNode: false
 };
 
 const decisionTreeReducer = (state, action) => {
@@ -26,6 +52,16 @@ const decisionTreeReducer = (state, action) => {
         ...state,
         prevNodes: state.prevNodes.filter(nodeId => nodeId !== action.payload)
       };
+    case "SET_IN_INTRO":
+      return {
+        ...state,
+        inIntro: action.payload
+      };
+    case "SET_IN_NODE":
+      return {
+        ...state,
+        inNode: action.payload
+      };
     case "RESET":
       return { ...initialState };
     default:
@@ -36,6 +72,8 @@ const decisionTreeReducer = (state, action) => {
 const DecisionTree = () => {
   const [state, dispatch] = useReducer(decisionTreeReducer, initialState);
   const [nodes] = useState(nodesData);
+
+  useEffect(() => {});
 
   const findNode = id => {
     const nodeId = parseInt(id, 10);
@@ -53,13 +91,36 @@ const DecisionTree = () => {
     });
   };
 
-  const nextNode = () => {
+  const toggleNodeAnim = () => {
     dispatch({
-      type: "ACTIVATE_NODE",
-      payload: state.activeNode.isComment
-        ? findNode(state.activeNode.commentRoute)
-        : state.selectedNode
+      type: "SET_IN_NODE",
+      payload: !state.inNode
     });
+  };
+
+  const toggleIntroAnim = () => {
+    dispatch({
+      type: "SET_IN_INTRO",
+      payload: !state.inIntro
+    });
+  };
+
+  const toggleIntroAndNodeAnim = () => {
+    toggleNodeAnim();
+    toggleIntroAnim();
+  }
+
+  const nextNode = () => {
+    toggleNodeAnim();
+
+    setTimeout(() => {
+      dispatch({
+        type: "ACTIVATE_NODE",
+        payload: state.activeNode.isComment
+          ? findNode(state.activeNode.commentRoute)
+          : state.selectedNode
+      });
+    }, duration);
 
     if (state.activeNode) {
       dispatch({
@@ -72,10 +133,14 @@ const DecisionTree = () => {
   const prevNode = () => {
     const prevNodeItem = state.prevNodes[state.prevNodes.length - 1];
 
-    dispatch({
-      type: "ACTIVATE_NODE",
-      payload: findNode(prevNodeItem)
-    });
+    toggleNodeAnim();
+
+    setTimeout(() => {
+      dispatch({
+        type: "ACTIVATE_NODE",
+        payload: findNode(prevNodeItem)
+      });
+    }, duration);
 
     dispatch({
       type: "SELECT_NODE",
@@ -89,107 +154,139 @@ const DecisionTree = () => {
   };
 
   const startSurvey = () => {
-    dispatch({
-      type: "ACTIVATE_NODE",
-      payload: findNode(1)
-    });
+    setTimeout(() => {
+      dispatch({
+        type: "ACTIVATE_NODE",
+        payload: findNode(1)
+      });
+    }, duration);
+
+    toggleIntroAndNodeAnim();
   };
 
   const resetSurvey = () => {
-    dispatch({
-      type: "RESET"
-    });
+    setTimeout(() => {
+      dispatch({
+        type: "RESET"
+      });
+    }, duration);
+
+    toggleIntroAndNodeAnim();
   };
 
   return state.activeNode === null ? (
-    <Intro
-      header="Should I Buy This?"
-      blurb={
-        <>
-          <p>
-            Decision support tools are an effective way to help prevent
-            overspending. Whenever you're tempted to pull out your wallet, go
-            through this questionnaire first. By adding this step to your
-            purchasing process, you can retrain yourself to think about every
-            purchase before you make it.
-          </p>
-          <p>
-            Inspired by{" "}
-            <a
-              href="https://www.smartaboutmoney.org/Topics/Spending-and-Borrowing/Control-Spending/Should-I-Buy-This"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {" "}
-              smartaboutmoney.org
-            </a>
-          </p>
-        </>
-      }
-      actions={<Button onClickEvt={startSurvey}>Get Started</Button>}
-    />
-  ) : (
-    <NodeItem
-      header={
-        state.activeNode.isFinalDecision ? "The verdict" : "Should I Buy This?"
-      }
-      question={state.activeNode.text}
-      details={state.activeNode.details}
-      isFinalDecision={state.activeNode.isFinalDecision}
-      isComment={state.activeNode.isComment}
-      choices={
-        !state.activeNode.isFinalDecision &&
-        !state.activeNode.isComment && (
-          <>
-            <RadioBtn
-              label="Yes"
-              onChangeEvt={selectNodeHandler}
-              value={state.activeNode.yesRoute}
-              isChecked={
-                state.selectedNode
-                  ? state.activeNode.yesRoute === state.selectedNode.id
-                  : false
-              }
-            />
-            <RadioBtn
-              label="No"
-              onChangeEvt={selectNodeHandler}
-              value={state.activeNode.noRoute}
-              isChecked={
-                state.selectedNode
-                  ? state.activeNode.noRoute === state.selectedNode.id
-                  : false
-              }
-            />
-          </>
-        )
-      }
-      prevBtn={
-        <Button
-          onClickEvt={state.prevNodes.length > 1 ? prevNode : resetSurvey}
+    <Transition in={state.inIntro} timeout={duration}>
+      {transState => (
+        <div
+          style={{
+            ...defaultIntroStyle,
+            ...transitionStyles[transState]
+          }}
         >
-          Previous
-        </Button>
-      }
-      nextBtn={
-        state.activeNode.isFinalDecision ? (
-          <Button onClickEvt={resetSurvey}>Reset</Button>
-        ) : (
-          <Button
-            onClickEvt={nextNode}
-            isDisabled={
-              state.activeNode.isComment
-                ? false
-                : state.selectedNode
-                ? state.selectedNode.id === state.activeNode.id
-                : true
+          <Intro
+            header="Should I Buy This?"
+            blurb={
+              <>
+                <p>
+                  Decision support tools are an effective way to help prevent
+                  overspending. Whenever you're tempted to pull out your wallet,
+                  go through this questionnaire first. By adding this step to
+                  your purchasing process, you can retrain yourself to think
+                  about every purchase before you make it.
+                </p>
+                <p>
+                  Inspired by{" "}
+                  <a
+                    href="https://www.smartaboutmoney.org/Topics/Spending-and-Borrowing/Control-Spending/Should-I-Buy-This"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {" "}
+                    smartaboutmoney.org
+                  </a>
+                </p>
+              </>
             }
-          >
-            Next
-          </Button>
-        )
-      }
-    />
+            actions={<Button onClickEvt={startSurvey}>Get Started</Button>}
+          />
+        </div>
+      )}
+    </Transition>
+  ) : (
+    <Transition in={state.inNode} timeout={duration} onExited={toggleNodeAnim}>
+      {transState => (
+        <div
+          style={{
+            ...defaultNodeItemStyle,
+            ...transitionStyles[transState]
+          }}
+        >
+          <NodeItem
+            header={
+              state.activeNode.isFinalDecision
+                ? "The verdict"
+                : "Should I Buy This?"
+            }
+            question={state.activeNode.text}
+            details={state.activeNode.details}
+            isFinalDecision={state.activeNode.isFinalDecision}
+            isComment={state.activeNode.isComment}
+            choices={
+              !state.activeNode.isFinalDecision &&
+              !state.activeNode.isComment && (
+                <>
+                  <RadioBtn
+                    label="Yes"
+                    onChangeEvt={selectNodeHandler}
+                    value={state.activeNode.yesRoute}
+                    isChecked={
+                      state.selectedNode
+                        ? state.activeNode.yesRoute === state.selectedNode.id
+                        : false
+                    }
+                  />
+                  <RadioBtn
+                    label="No"
+                    onChangeEvt={selectNodeHandler}
+                    value={state.activeNode.noRoute}
+                    isChecked={
+                      state.selectedNode
+                        ? state.activeNode.noRoute === state.selectedNode.id
+                        : false
+                    }
+                  />
+                </>
+              )
+            }
+            prevBtn={
+              <Button
+                onClickEvt={state.prevNodes.length > 1 ? prevNode : resetSurvey}
+              >
+                Previous
+              </Button>
+            }
+            nextBtn={
+              state.activeNode.isFinalDecision ? (
+                <Button onClickEvt={resetSurvey}>Reset</Button>
+              ) : (
+                <Button
+                  onClickEvt={nextNode}
+                  isDisabled={
+                    state.activeNode.isComment
+                      ? false
+                      : state.selectedNode
+                      ? state.selectedNode.id === state.activeNode.id
+                      : true
+                  }
+                >
+                  Next
+                </Button>
+              )
+            }
+          />
+        </div>
+      )}
+    </Transition>
   );
 };
 
