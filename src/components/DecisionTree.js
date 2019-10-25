@@ -8,10 +8,10 @@ import NodeItem from "./NodeItem";
 import RadioBtn from "./RadioBtn";
 import Button from "./Button";
 
-const duration = 250;
+const duration = 200;
 
 const defaultStyle = {
-  transition: `all ${duration}ms ease-in-out`
+  transition: `all ${duration}ms ease-in-out`,
 };
 
 const defaultIntroStyle = {
