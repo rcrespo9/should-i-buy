@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   background-color: ${props => props.theme.secondaryColor};
   font-size: ${modularScale(0)};
   font-weight: 500;
-  transition: all ${props => props.theme.easingTiming};
+  transition: background-color ${props => props.theme.easingTiming};
 
   &:hover:enabled {
     cursor: pointer;

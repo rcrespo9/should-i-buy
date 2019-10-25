@@ -33,6 +33,7 @@ const Label = styled.label`
     props.isChecked ? props.theme.secondaryColor : props.theme.grayColor};
   font-size: ${modularScale(2)};
   transition: all ${props => props.theme.easingTiming};
+  transition-property: color, background-color, border-color;
 
   &:hover {
     border-color: ${props => props.theme.secondaryColor};
