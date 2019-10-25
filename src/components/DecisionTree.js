@@ -11,7 +11,7 @@ import Button from "./Button";
 const duration = 200;
 
 const defaultStyle = {
-  transition: `all ${duration}ms ease-in-out`,
+  transition: `all ${duration}ms ease-in-out`
 };
 
 const defaultIntroStyle = {
@@ -89,7 +89,7 @@ const DecisionTree = () => {
     });
   };
 
-  const delayDispatch = (dispatchObj) => {
+  const delayDispatch = dispatchObj => {
     setTimeout(() => dispatch(dispatchObj), duration);
   };
 
@@ -110,7 +110,7 @@ const DecisionTree = () => {
   const toggleIntroAndNodeAnim = () => {
     toggleNodeAnim();
     toggleIntroAnim();
-  }
+  };
 
   const nextNode = () => {
     toggleNodeAnim();
