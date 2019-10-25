@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 import { Transition } from "react-transition-group";
 
 import nodesData from "../nodes.json";
